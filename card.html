@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Card Store | ร้านขายการ์ดอนิเมะ</title>
+    <style>
+        /* ตั้งค่าพื้นฐานให้หน้าเว็บ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* แถบเมนูด้านบน */
+        header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: #e94560;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e94560;
+        }
+
+        /* ส่วนแบนเนอร์ */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #16213e, #0f3460);
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* ส่วนแสดงสินค้า */
+        .products-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .products-container h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* การ์ดสินค้าแต่ละชิ้น */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #ddd; /* สีพื้นหลังเผื่อรูปไม่โหลด */
+        }
+
+        .card h4 {
+            margin: 15px 0 5px;
+            font-size: 1.2rem;
+        }
+
+        .price {
+            color: #e94560;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .btn-add:hover {
+            background-color: #d1304d;
+        }
+
+        /* ส่วนท้ายเว็บ */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #1a1a2e;
+            color: #aaa;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌟 AniCard Shop</h1>
+        <nav>
+            <a href="#">หน้าแรก</a>
+            <a href="#">สินค้าทั้งหมด</a>
+            <a href="#">ตะกร้าสินค้า (0)</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>รวมการ์ดอนิเมะแรร์ไอเทม</h2>
+        <p>อัปเดตสต็อกใหม่ทุกสัปดาห์ ของแท้ 100% ส่งตรงจากญี่ปุ่น</p>
+    </section>
+
+    <main class="products-container">
+        <h3>🔥 สินค้ามาใหม่ 🔥</h3>
+        
+        <div class="grid">
+            <div class="card">
+                <img src="https://via.placeholder.com/250x350?text=Goku+SSR" alt="การ์ด Goku">
+                <h4>Goku - Super Secret Rare</h4>
+                <div class="price">฿1,290</div>
+                <button class="btn-add">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="card">
+                <img src="https://via.placeholder.com/250x350?text=Luffy+Gear+5" alt="การ์ด Luffy">
+                <h4>Luffy Gear 5 - Holographic</h4>
+                <div class="price">฿850</div>
+                <button class="btn-add">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="card">
+                <img src="https://via.placeholder.com/250x350?text=Pikachu+VMAX" alt="การ์ด Pikachu">
+                <h4>Pikachu VMAX - Gold Edition</h4>
+                <div class="price">฿2,500</div>
+                <button class="btn-add">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="card">
+                <img src="https://via.placeholder.com/250x350?text=Gojo+Satoru" alt="การ์ด Gojo">
+                <h4>Gojo Satoru - Limited SP</h4>
+                <div class="price">฿1,800</div>
+                <button class="btn-add">เพิ่มลงตะกร้า</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AniCard Shop. สร้างขึ้นมาเพื่อเป็นตัวอย่าง E-commerce</p>
+    </footer>
+
+</body>
+</html>

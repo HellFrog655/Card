@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAND LINE CARDS — ร้านการ์ดวันพีซ OPCG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#0B0F1A;            /* พื้นหลังหลัก — น้ำเงินหมึกแบบหลังการ์ด */
+  --ink-2:#121829;          /* การ์ด/แผง */
+  --ink-3:#1B2236;          /* hover */
+  --line:#27304A;           /* เส้นแบ่ง */
+  --paper:#EDEFF6;          /* ตัวอักษรหลัก */
+  --dim:#8A93AD;            /* ตัวอักษรรอง */
+  --red:#E8364B;            /* แดงโจรสลัด */
+  --gold:#E5B84B;           /* ทองฟอยล์ */
+  --holo:linear-gradient(115deg,#7df0ff 0%,#a78bfa 25%,#ff8fb0 50%,#ffd66b 75%,#7df0ff 100%);
+  --font-display:'Chakra Petch',sans-serif;
+  --font-body:'IBM Plex Sans Thai',sans-serif;
+  --radius:14px;
+}
+:root{ --r-c:#8A93AD; --r-uc:#5BCF86; --r-r:#4FA8FF; --r-sr:#B07CFF; --r-sec:#FFD66B; --r-psa:#FF5C5C; }
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--font-body);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+::selection{background:var(--red);color:#fff}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* พื้นหลังลายตาราง + แสง */
+.bg-grid{
+  position:fixed;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;
+  opacity:.18;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
+}
+.bg-glow{
+  position:fixed;z-index:-1;border-radius:50%;filter:blur(120px);opacity:.16;pointer-events:none;
+}
+.bg-glow.red{width:520px;height:520px;background:var(--red);top:-180px;right:-120px}
+.bg-glow.gold{width:420px;height:420px;background:var(--gold);bottom:-160px;left:-140px;opacity:.10}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ============ NAV ============ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,15,26,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.04em}
+.logo .mark{
+  width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--red),#9b1c2c);
+  font-size:1.05rem;box-shadow:0 4px 14px rgba(232,54,75,.35);
+}
+.logo small{color:var(--dim);font-size:.62rem;font-weight:600;display:block;letter-spacing:.18em;margin-top:-2px}
+.nav-links{display:flex;gap:22px;margin-left:8px;font-size:.92rem;color:var(--dim)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--paper)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--ink-2);border:1px solid var(--line);border-radius:10px;
+  padding:8px 14px;min-width:230px;
+}
+.search-box input{
+  background:none;border:none;outline:none;color:var(--paper);
+  font-family:var(--font-body);font-size:.9rem;width:100%;
+}
+.search-box input::placeholder{color:var(--dim)}
+.cart-btn{
+  position:relative;display:flex;align-items:center;gap:8px;
+  background:var(--red);color:#fff;font-weight:600;font-size:.9rem;
+  padding:9px 18px;border-radius:10px;transition:transform .15s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(232,54,75,.3);
+}
+.cart-btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(232,54,75,.45)}
+.cart-count{
+  background:#fff;color:var(--red);font-family:var(--font-display);font-weight:700;
+  font-size:.78rem;min-width:22px;height:22px;border-radius:11px;
+  display:grid;place-items:center;padding:0 5px;
+}
+
+/* ============ HERO ============ */
+.hero{padding:72px 0 56px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-display);font-size:.74rem;font-weight:600;letter-spacing:.16em;
+  color:var(--gold);border:1px solid rgba(229,184,75,.35);
+  padding:6px 14px;border-radius:999px;margin-bottom:20px;
+  background:rgba(229,184,75,.06);
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.18;letter-spacing:.01em;
+}
+h1 .holo-text{
+  background:var(--holo);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:holoShift 6s linear infinite;
+}
+@keyframes holoShift{to{background-position:300% 0}}
+.hero p.lead{color:var(--dim);font-size:1.04rem;margin:18px 0 30px;max-width:520px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-display);font-weight:600;font-size:.95rem;
+  padding:13px 26px;border-radius:12px;transition:transform .15s,box-shadow .2s,background .2s;
+}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 6px 22px rgba(232,54,75,.35)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,54,75,.5)}
+.btn-ghost{border:1px solid var(--line);color:var(--paper);background:var(--ink-2)}
+.btn-ghost:hover{background:var(--ink-3)}
+.hero-stats{display:flex;gap:34px;margin-top:38px}
+.hstat b{font-family:var(--font-display);font-size:1.5rem;color:var(--gold);display:block}
+.hstat span{font-size:.82rem;color:var(--dim)}
+
+/* การ์ดพัดในฮีโร่ */
+.card-fan{position:relative;height:430px;perspective:1100px}
+.fan-card{
+  position:absolute;left:50%;top:50%;
+  width:215px;height:300px;border-radius:13px;
+  transform-origin:50% 120%;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  overflow:hidden;
+}
+.fan-card::after{ /* แสงฟอยล์กวาด */
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 62%);
+  background-size:240% 100%;animation:sheen 5.5s ease-in-out infinite;
+}
+@keyframes sheen{0%,100%{background-position:130% 0}50%{background-position:-30% 0}}
+.fan-card:nth-child(1){transform:translate(-50%,-50%) rotate(-16deg) translateX(-105px)}
+.fan-card:nth-child(2){transform:translate(-50%,-50%) rotate(-5deg) translateX(-32px) translateY(-12px);z-index:2}
+.fan-card:nth-child(3){transform:translate(-50%,-50%) rotate(7deg) translateX(48px);z-index:3}
+.card-fan:hover .fan-card:nth-child(1){transform:translate(-50%,-50%) rotate(-22deg) translateX(-150px) translateY(6px)}
+.card-fan:hover .fan-card:nth-child(2){transform:translate(-50%,-50%) rotate(-4deg) translateX(-38px) translateY(-30px)}
+.card-fan:hover .fan-card:nth-child(3){transform:translate(-50%,-50%) rotate(12deg) translateX(95px) translateY(-4px)}
+
+/* หน้าตาการ์ดจำลอง (CSS ล้วน) */
+.tcg-face{position:absolute;inset:0;padding:11px;display:flex;flex-direction:column}
+.tcg-face .frame{
+  flex:1;border-radius:9px;border:2px solid rgba(255,255,255,.22);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.tcg-red{background:linear-gradient(160deg,#3d1320,#1c0a12 60%),radial-gradient(circle at 70% 20%,rgba(232,54,75,.5),transparent 55%)}
+.tcg-red .frame{background:radial-gradient(circle at 30% 25%,rgba(232,54,75,.65),transparent 60%),radial-gradient(circle at 75% 70%,rgba(255,140,90,.4),transparent 55%),#220b13}
+.tcg-purple{background:linear-gradient(160deg,#241338,#120a1c 60%)}
+.tcg-purple .frame{background:radial-gradient(circle at 65% 25%,rgba(176,124,255,.6),transparent 60%),radial-gradient(circle at 25% 75%,rgba(125,240,255,.35),transparent 55%),#170d24}
+.tcg-gold{background:linear-gradient(160deg,#332710,#1a1408 60%)}
+.tcg-gold .frame{background:radial-gradient(circle at 50% 30%,rgba(255,214,107,.55),transparent 62%),radial-gradient(circle at 80% 80%,rgba(232,54,75,.3),transparent 50%),#211806}
+.tcg-face .cost{
+  position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.4);
+  display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.95rem;
+}
+.tcg-face .nameplate{
+  background:rgba(0,0,0,.62);backdrop-filter:blur(3px);
+  padding:7px 10px;border-top:1px solid rgba(255,255,255,.18);
+}
+.tcg-face .nameplate b{font-family:var(--font-display);font-size:.82rem;letter-spacing:.03em;display:block}
+.tcg-face .nameplate span{font-size:.62rem;color:rgba(255,255,255,.65)}
+.tcg-face .setno{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-display);font-size:.6rem;color:rgba(255,255,255,.55);
+  padding:6px 2px 0;letter-spacing:.06em;
+}
+.rar-chip{
+  font-weight:700;font-size:.58rem;padding:2px 7px;border-radius:5px;color:#0B0F1A;
+}
+
+/* ============ SECTION HEADERS ============ */
+section{padding:64px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700}
+.sec-head h2 .accent{color:var(--red)}
+.sec-head p{color:var(--dim);font-size:.92rem;margin-top:4px}
+.sec-link{font-family:var(--font-display);font-size:.85rem;font-weight:600;color:var(--gold);white-space:nowrap}
+.sec-link:hover{text-decoration:underline}
+
+/* ============ FILTERS ============ */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.chip{
+  font-family:var(--font-display);font-size:.82rem;font-weight:600;
+  padding:8px 18px;border-radius:999px;border:1px solid var(--line);
+  background:var(--ink-2);color:var(--dim);transition:all .2s;
+}
+.chip:hover{border-color:var(--dim);color:var(--paper)}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 14px rgba(232,54,75,.3)}
+
+/* ============ PRODUCT GRID ============ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:22px}
+.product{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.product:hover{transform:translateY(-5px);border-color:#3A4566;box-shadow:0 16px 44px rgba(0,0,0,.5)}
+.product .thumb{
+  position:relative;aspect-ratio:1/1;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 38%,#1E2740,#0E1322 75%);
+  overflow:hidden;
+}
+/* การ์ดเดี่ยวใน thumbnail — เอียง 3D ตามเมาส์ + ฟอยล์ */
+.mini-card{
+  width:138px;height:192px;border-radius:9px;position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 14px 34px rgba(0,0,0,.55);
+  transition:transform .12s ease-out;will-change:transform;
+  transform-style:preserve-3d;
+}
+.mini-card .foil{
+  position:absolute;inset:0;opacity:0;transition:opacity .25s;
+  background:var(--holo);background-size:300% 300%;mix-blend-mode:color-dodge;
+}
+.product:hover .mini-card .foil{opacity:.34}
+.mini-face{position:absolute;inset:0;padding:7px;display:flex;flex-direction:column}
+.mini-face .frame{flex:1;border-radius:6px;border:1.5px solid rgba(255,255,255,.2);position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.mini-face .nm{width:100%;background:rgba(0,0,0,.6);padding:4px 7px;font-family:var(--font-display);font-size:.6rem;font-weight:600;letter-spacing:.04em}
+/* กล่องบูสเตอร์ */
+.box-3d{
+  width:128px;height:168px;position:relative;transform:rotate(-4deg);
+  transition:transform .3s;
+}
+.product:hover .box-3d{transform:rotate(-1deg) scale(1.05)}
+.box-3d .face-f{
+  position:absolute;inset:0;border-radius:8px;
+  border:1px solid rgba(255,255,255,.2);overflow:hidden;
+  box-shadow:10px 10px 0 rgba(0,0,0,.35),0 16px 36px rgba(0,0,0,.5);
+  display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px;
+}
+.box-3d .face-f .bx-logo{font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.box-3d .face-f .bx-set{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.box-3d .face-f .bx-sub{font-size:.58rem;color:rgba(255,255,255,.85)}
+/* เคสเกรด PSA */
+.slab{
+  width:120px;height:200px;border-radius:8px;position:relative;
+  background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 0 0 3px rgba(255,255,255,.07),0 16px 36px rgba(0,0,0,.55);
+  padding:8px;display:flex;flex-direction:column;gap:6px;
+}
+.slab .label{
+  background:#fff;color:#0B0F1A;border-radius:4px;padding:4px 7px;
+  font-family:var(--font-display);font-size:.55rem;font-weight:700;line-height:1.3;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.slab .label .g10{font-size:1rem;color:var(--red)}
+.slab .inner{flex:1;border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.2);position:relative}
+
+/* badge rarity มุมการ์ด */
+.badge{
+  position:absolute;top:12px;left:12px;z-index:3;
+  font-family:var(--font-display);font-size:.66rem;font-weight:700;letter-spacing:.08em;
+  padding:4px 11px;border-radius:6px;color:#0B0F1A;
+}
+.badge.hot{
+  left:auto;right:12px;background:var(--red);color:#fff;
+  box-shadow:0 3px 12px rgba(232,54,75,.5);
+}
+.b-c{background:var(--r-c)} .b-uc{background:var(--r-uc)} .b-r{background:var(--r-r)}
+.b-sr{background:var(--r-sr)} .b-sec{background:var(--r-sec)} .b-psa{background:var(--r-psa);color:#fff}
+
+.product .info{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.product .pname{font-weight:600;font-size:.98rem;line-height:1.45}
+.product .pmeta{font-size:.78rem;color:var(--dim);font-family:var(--font-display);letter-spacing:.03em}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px}
+.price{font-family:var(--font-display);font-weight:700;font-size:1.22rem;color:var(--gold)}
+.price small{font-size:.72rem;color:var(--dim);font-weight:500;display:block;text-decoration:line-through}
+.add-btn{
+  width:40px;height:40px;border-radius:10px;background:var(--ink-3);
+  border:1px solid var(--line);display:grid;place-items:center;font-size:1.1rem;
+  transition:all .2s;color:var(--paper);
+}
+.add-btn:hover{background:var(--red);border-color:var(--red);transform:scale(1.08)}
+.stock{font-size:.74rem;color:var(--r-uc)}
+.stock.low{color:var(--gold)}
+.stock.out{color:var(--dim)}
+
+/* ============ GRADING BANNER ============ */
+.grading{
+  background:linear-gradient(120deg,var(--ink-2),#1A1426);
+  border:1px solid var(--line);border-radius:20px;
+  padding:46px 48px;display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.grading::before{
+  content:"";position:absolute;inset:0;
+  background:var(--holo);background-size:400% 400%;
+  opacity:.05;animation:holoShift 10s linear infinite;pointer-events:none;
+}
+.grading h3{font-family:var(--font-display);font-size:1.55rem;font-weight:700;margin-bottom:12px}
+.grading p{color:var(--dim);font-size:.95rem;max-width:480px}
+.grading ul{list-style:none;margin:18px 0 24px;display:grid;gap:10px}
+.grading li{display:flex;gap:10px;font-size:.9rem;align-items:flex-start}
+.grading li::before{content:"✦";color:var(--gold);font-size:.8rem;margin-top:3px}
+.grade-visual{display:flex;justify-content:center}
+
+/* ============ TRUST STRIP ============ */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.trust-item{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;text-align:center;transition:border-color .25s;
+}
+.trust-item:hover{border-color:#3A4566}
+.trust-item .ico{font-size:1.7rem;margin-bottom:10px}
+.trust-item b{font-family:var(--font-display);font-size:.95rem;display:block;margin-bottom:4px}
+.trust-item span{font-size:.8rem;color:var(--dim)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.foot-grid h4{font-family:var(--font-display);font-size:.88rem;font-weight:700;letter-spacing:.08em;margin-bottom:14px;color:var(--gold)}
+.foot-grid a,.foot-grid p{display:block;font-size:.86rem;color:var(--dim);margin-bottom:9px;transition:color .2s}
+.foot-grid a:hover{color:var(--paper)}
+.copy{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* toast */
+.toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--ink-3);border:1px solid var(--gold);color:var(--paper);
+  font-family:var(--font-display);font-size:.88rem;font-weight:600;
+  padding:13px 26px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.6);
+  opacity:0;transition:all .35s cubic-bezier(.2,.8,.2,1);z-index:200;pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* focus + motion */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:48px}
+  .card-fan{height:380px;order:-1}
+  .grading{grid-template-columns:1fr;padding:34px 28px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .trust{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .search-box{min-width:0;flex:1}
+}
+@media (max-width:560px){
+  .hero-stats{gap:22px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .mini-card{width:110px;height:154px}
+  .search-box{display:none}
+  .trust{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow red" aria-hidden="true"></div>
+<div class="bg-glow gold" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <span class="mark">⚓</span>
+      <span>GRAND LINE<small>CARD SHOP TH</small></span>
+    </a>
+    <nav class="nav-links" aria-label="เมนูหลัก">
+      <a href="#singles">การ์ดเดี่ยว</a>
+      <a href="#boxes">กล่องบูสเตอร์</a>
+      <a href="#graded">การ์ดเกรด</a>
+      <a href="#grading">บริการส่งเกรด</a>
+    </nav>
+    <div class="nav-right">
+      <div class="search-box">
+        <span aria-hidden="true">🔍</span>
+        <input type="search" id="searchInput" placeholder="ค้นหาการ์ด เช่น OP-09, Leader, SEC...">
+      </div>
+      <button class="cart-btn" id="cartBtn">
+        🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<main>
+<section class="hero container">
+  <div>
+    <span class="eyebrow"><span class="dot"></span> เปิดจอง OP-16 รอบ PRE-ORDER แล้ววันนี้</span>
+    <h1>ล่าสมบัติใบต่อไปของคุณ<br>ที่ร้านการ์ด <span class="holo-text">ONE PIECE</span> ตัวจริง</h1>
+    <p class="lead">การ์ดเดี่ยวระดับ SR / SEC / Manga Rare, กล่องบูสเตอร์ซีลแท้จากญี่ปุ่น และการ์ดเกรด PSA — ตรวจสอบของแท้ทุกใบก่อนส่ง พร้อมแพ็กกันกระแทกระดับนักสะสม</p>
+    <div class="hero-actions">
+      <a href="#singles" class="btn btn-red">เลือกซื้อการ์ดเดี่ยว →</a>
+      <a href="#boxes" class="btn btn-ghost">ดูกล่องบูสเตอร์</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b>4,800+</b><span>การ์ดในสต็อก</span></div>
+      <div class="hstat"><b>100%</b><span>ของแท้ ตรวจทุกใบ</span></div>
+      <div class="hstat"><b>24 ชม.</b><span>จัดส่งทั่วไทย</span></div>
+    </div>
+  </div>
+
+  <div class="card-fan" aria-hidden="true">
+    <div class="fan-card tcg-red">
+      <div class="tcg-face">
+        <div class="frame"><span class="cost">5</span>
+          <div class="nameplate"><b>STRAW HAT LEADER</b><span>Leader · Red</span></div>
+        </div>
+        <div class="setno"><span>OP-09 · 001</span><span class="rar-chip" style="background:var(--r-r)">L</span></div>
+      </div>
+    </div>
+    <div class="fan-card tcg-purple">
+      <div class="tcg-face">
+        <div class="frame"><span class="cost">7</span>
+          <div class="nameplate"><b>EMPEROR'S WRATH</b><span>Character · Purple</span></div>
+        </div>
+        <div class="setno"><span>OP-10 · 118</span><span class="rar-chip" style="background:var(--r-sr)">SR</span></div>
+      </div>
+    </div>
+    <div class="fan-card tcg-gold">
+      <div class="tcg-face">
+        <div class="frame"><span class="cost">9</span>
+          <div class="nameplate"><b>KING OF PIRATES</b><span>Secret Rare · Foil</span></div>
+        </div>
+        <div class="setno"><span>OP-09 · SEC</span><span class="rar-chip" style="background:var(--r-sec)">SEC</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SINGLES ================= -->
+<section id="singles" class="container">
+  <div class="sec-head">
+    <div>
+      <h2>การ์ดเดี่ยว <span class="accent">SINGLES</span></h2>
+      <p>คัดสภาพ NM ทุกใบ · ใส่ซองแข็ง Toploader ก่อนส่ง</p>
+    </div>
+    <a href="#" class="sec-link">ดูทั้งหมด 4,800+ ใบ →</a>
+  </div>
+
+  <div class="filter-bar" id="filterBar" role="group" aria-label="กรองตามระดับความหายาก">
+    <button class="chip active" data-filter="all">ทั้งหมด</button>
+    <button class="chip" data-filter="sec">SEC</button>
+    <button class="chip" data-filter="sr">SR</button>
+    <button class="chip" data-filter="r">R</button>
+    <button class="chip" data-filter="uc">UC / C</button>
+    <button class="chip" data-filter="psa">เกรดแล้ว (PSA)</button>
+  </div>
+
+  <div class="grid" id="productGrid"><!-- JS render --></div>
+</section>
+
+<!-- ================= BOOSTER BOXES ================= -->
+<section id="boxes" class="container">
+  <div class="sec-head">
+    <div>
+      <h2>กล่องบูสเตอร์ <span class="accent">SEALED</span></h2>
+      <p>ซีลโรงงานจากญี่ปุ่น · มีใบกำกับล็อตนำเข้า</p>
+    </div>
+    <a href="#" class="sec-link">ดูทุกเซ็ต →</a>
+  </div>
+  <div class="grid" id="boxGrid"><!-- JS render --></div>
+</section>
+
+<!-- ================= GRADED ================= -->
+<section id="graded" class="container">
+  <div class="sec-head">
+    <div>
+      <h2>การ์ดเกรด <span class="accent">PSA / BGS</span></h2>
+      <p>สำหรับนักสะสมและนักลงทุน · ตรวจสอบเลข Cert ได้ทุกใบ</p>
+    </div>
+    <a href="#" class="sec-link">ดูการ์ดเกรดทั้งหมด →</a>
+  </div>
+  <div class="grid" id="gradedGrid"><!-- JS render --></div>
+</section>
+
+<!-- ================= GRADING SERVICE ================= -->
+<section id="grading" class="container">
+  <div class="grading">
+    <div>
+      <h3>บริการส่งเกรดการ์ด PSA 🇺🇸</h3>
+      <p>มีการ์ดเด็ดอยู่ในมือ? ส่งเกรดกับเราแบบรวมรอบ (Group Submission) ประหยัดกว่า ปลอดภัยกว่า ติดตามสถานะได้ทุกขั้นตอน</p>
+      <ul>
+        <li>ตรวจสภาพเบื้องต้น (Pre-Grade) ฟรี ประเมินโอกาสได้เกรด 9–10 ก่อนส่งจริง</li>
+        <li>ประกันการขนส่งเต็มมูลค่าการ์ด ทั้งขาไปและขากลับ</li>
+        <li>รอบส่งทุกเดือน ระยะเวลาประมาณ 45–60 วัน</li>
+      </ul>
+      <a href="#" class="btn btn-red">จองรอบส่งเกรดเดือนนี้</a>
+    </div>
+    <div class="grade-visual" aria-hidden="true">
+      <div class="slab">
+        <div class="label">
+          <span>ONE PIECE OPCG<br>SECRET RARE · 2025</span>
+          <span class="g10">10</span>
+        </div>
+        <div class="inner tcg-gold">
+          <div class="tcg-face" style="padding:6px">
+            <div class="frame">
+              <div class="nameplate" style="padding:4px 7px"><b style="font-size:.62rem">GEM MINT</b><span style="font-size:.52rem">Graded Slab</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section class="container">
+  <div class="trust">
+    <div class="trust-item"><div class="ico">🛡️</div><b>ของแท้ 100%</b><span>ตรวจสอบทุกใบโดยทีมงาน รับประกันคืนเงินเต็มจำนวน</span></div>
+    <div class="trust-item"><div class="ico">📦</div><b>แพ็กระดับนักสะสม</b><span>ซองแข็ง + กันกระแทก + กล่องลูกฟูก ทุกออเดอร์</span></div>
+    <div class="trust-item"><div class="ico">🚚</div><b>ส่งไวใน 24 ชม.</b><span>สั่งก่อน 15:00 ส่งวันเดียวกัน มีเลขแทร็กทุกกล่อง</span></div>
+    <div class="trust-item"><div class="ico">💬</div><b>ปรึกษาฟรี</b><span>ทีมงานเล่นจริง ตอบไว ทั้ง LINE และ Facebook</span></div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo" style="margin-bottom:14px">
+          <span class="mark">⚓</span>
+          <span>GRAND LINE<small>CARD SHOP TH</small></span>
+        </a>
+        <p>ร้านการ์ดเกม One Piece สำหรับนักสะสมชาวไทย<br>เปิดทุกวัน 10:00 – 20:00 น.</p>
+      </div>
+      <div>
+        <h4>สินค้า</h4>
+        <a href="#singles">การ์ดเดี่ยว</a>
+        <a href="#boxes">กล่องบูสเตอร์</a>
+        <a href="#graded">การ์ดเกรด PSA</a>
+        <a href="#">ซองและอุปกรณ์</a>
+      </div>
+      <div>
+        <h4>บริการ</h4>
+        <a href="#grading">ส่งเกรดการ์ด</a>
+        <a href="#">รับซื้อ–เทิร์นการ์ด</a>
+        <a href="#">เช็กราคาตลาด</a>
+        <a href="#">Pre-Order เซ็ตใหม่</a>
+      </div>
+      <div>
+        <h4>ติดต่อเรา</h4>
+        <a href="#">LINE: @grandlinecards</a>
+        <a href="#">Facebook Page</a>
+        <a href="#">วิธีสั่งซื้อและชำระเงิน</a>
+        <a href="#">นโยบายการคืนสินค้า</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Grand Line Card Shop TH — สงวนลิขสิทธิ์</span>
+      <span>ราคาอาจเปลี่ยนแปลงตามตลาด อัปเดตทุกวัน</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status">เพิ่มลงตะกร้าแล้ว ✓</div>
+
+<script>
+/* ============ DATA ============ */
+// แก้สินค้า/ราคา/รูปได้ที่นี่ — ใส่ field img:"url" เพื่อแทนการ์ด CSS ด้วยรูปจริง
+const singles = [
+  {name:"Leader การ์ดหายาก Alt-Art", set:"OP-09 · 001", rarity:"sr",  price:1630, old:1890, stock:"เหลือ 2 ใบ", low:true,  theme:"tcg-red",    hot:true},
+  {name:"Secret Rare ฟอยล์เต็มใบ",   set:"OP-09 · SEC", rarity:"sec", price:13806,            stock:"เหลือ 1 ใบ", low:true,  theme:"tcg-gold",   hot:true},
+  {name:"SR Parallel ลายแมงงะ",      set:"OP-13 · 118", rarity:"sr",  price:786,              stock:"มีสินค้า",            theme:"tcg-purple"},
+  {name:"Rare ตัวเด่นเมต้าปัจจุบัน",  set:"OP-10 · 042", rarity:"r",   price:425,              stock:"มีสินค้า",            theme:"tcg-red"},
+  {name:"SR สายเล่นจริง สภาพ NM",    set:"OP-12 · 077", rarity:"sr",  price:702,   old:850,   stock:"มีสินค้า",            theme:"tcg-purple"},
+  {name:"Rare Foil เหมาะลงเด็ค",     set:"OP-11 · 023", rarity:"r",   price:245,              stock:"มีสินค้า",            theme:"tcg-gold"},
+  {name:"ชุด UC/C ครบสี 40 ใบ",      set:"คละเซ็ต",     rarity:"uc",  price:250,              stock:"มีสินค้า",            theme:"tcg-red"},
+  {name:"Promo การ์ดงานแข่ง",       set:"P-058",       rarity:"r",   price:449,              stock:"เหลือ 3 ใบ", low:true, theme:"tcg-purple"},
+];
+const boxes = [
+  {name:"กล่องบูสเตอร์ OP-16 (Pre-Order)", set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:3290, stock:"เปิดจองรอบ 2", theme:"tcg-red",    code:"OP-16", hot:true},
+  {name:"กล่องบูสเตอร์ OP-15 ซีลแท้",      set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:3590, stock:"มีสินค้า",      theme:"tcg-purple", code:"OP-15"},
+  {name:"กล่องบูสเตอร์ OP-09 (หายาก)",     set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:5900, old:6500, stock:"เหลือ 2 กล่อง", low:true, theme:"tcg-gold", code:"OP-09"},
+  {name:"Starter Deck เริ่มเล่น",          set:"เด็คสำเร็จ 51 ใบ + เพลย์ชีต",  price:690,  stock:"มีสินค้า",      theme:"tcg-red",    code:"ST"},
+];
+const graded = [
+  {name:"PSA 10 Secret Rare เคสใส",  set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10", price:78384, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-gold", hot:true},
+  {name:"PSA 9 SR Alt-Art",          set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9",  price:12500, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-purple"},
+  {name:"PSA 10 Promo งานแข่งญี่ปุ่น", set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10", price:24900, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-red"},
+  {name:"BGS 9.5 Leader Parallel",   set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9.5",price:18800, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-gold"},
+];
+
+const rarLabel = {c:"C",uc:"UC",r:"R",sr:"SR",sec:"SEC",psa:"PSA"};
+const baht = n => "฿" + n.toLocaleString("th-TH");
+
+/* ============ RENDER ============ */
+function miniCardHTML(p){
+  if(p.img){ return `<img src="${p.img}" alt="${p.name}" style="width:138px;border-radius:9px;box-shadow:0 14px 34px rgba(0,0,0,.55)">`; }
+  return `
+  <div class="mini-card ${p.theme}">
+    <div class="mini-face"><div class="frame ${p.theme}"><div class="nm">${p.set}</div></div></div>
+    <div class="foil"></div>
+  </div>`;
+}
+function slabHTML(p){
+  return `
+  <div class="slab" style="transform:scale(.88)">
+    <div class="label"><span>ONE PIECE OPCG<br>${p.set}</span><span class="g10">${p.grade}</span></div>
+    <div class="inner ${p.theme}"></div>
+  </div>`;
+}
+function boxHTML(p){
+  return `
+  <div class="box-3d">
+    <div class="face-f ${p.theme}">
+      <span class="bx-logo">BOOSTER BOX</span>
+      <span class="bx-set">${p.code}</span>
+      <span class="bx-sub">24 PACKS · FACTORY SEALED</span>
+    </div>
+  </div>`;
+}
+function productHTML(p, kind){
+  const visual = kind==="box" ? boxHTML(p) : kind==="slab" ? slabHTML(p) : miniCardHTML(p);
+  const badge  = p.rarity ? `<span class="badge b-${p.rarity}">${rarLabel[p.rarity]}</span>` : "";
+  const hot    = p.hot ? `<span class="badge hot">🔥 HOT</span>` : "";
+  const old    = p.old ? `<small>${baht(p.old)}</small>` : "";
+  const stockCls = p.low ? "low" : (p.out ? "out" : "");
+  return `
+  <article class="product" data-rarity="${p.rarity||'box'}" data-name="${(p.name+' '+p.set).toLowerCase()}">
+    <div class="thumb">${badge}${hot}${visual}</div>
+    <div class="info">
+      <div class="pname">${p.name}</div>
+      <div class="pmeta">${p.set}</div>
+      <span class="stock ${stockCls}">● ${p.stock}</span>
+      <div class="price-row">
+        <div class="price">${old}${baht(p.price)}</div>
+        <button class="add-btn" aria-label="เพิ่ม ${p.name} ลงตะกร้า" onclick="addToCart()">＋</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+document.getElementById("productGrid").innerHTML = singles.map(p=>productHTML(p,"card")).join("");
+document.getElementById("boxGrid").innerHTML     = boxes.map(p=>productHTML(p,"box")).join("");
+document.getElementById("gradedGrid").innerHTML  = graded.map(p=>productHTML(p,"slab")).join("");
+
+/* ============ CART ============ */
+let cart = 0;
+const toast = document.getElementById("toast");
+let toastTimer;
+function addToCart(){
+  cart++;
+  document.getElementById("cartCount").textContent = cart;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"), 1800);
+}
+
+/* ============ FILTER ============ */
+const chips = document.querySelectorAll("#filterBar .chip");
+chips.forEach(chip=>{
+  chip.addEventListener("click", ()=>{
+    chips.forEach(c=>c.classList.remove("active"));
+    chip.classList.add("active");
+    const f = chip.dataset.filter;
+    document.querySelectorAll("#productGrid .product").forEach(card=>{
+      const r = card.dataset.rarity;
+      const show = f==="all" || r===f || (f==="uc" && (r==="uc"||r==="c"));
+      card.style.display = show ? "" : "none";
+    });
+    // กรอง PSA → โชว์เฉพาะ section การ์ดเกรด
+    if(f==="psa"){ document.getElementById("graded").scrollIntoView({behavior:"smooth"}); }
+  });
+});
+
+/* ============ SEARCH ============ */
+document.getElementById("searchInput").addEventListener("input", e=>{
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".product").forEach(card=>{
+    card.style.display = !q || card.dataset.name.includes(q) ? "" : "none";
+  });
+});
+
+/* ============ HOLO TILT (เอียงการ์ดตามเมาส์) ============ */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!reduceMotion){
+  document.addEventListener("mousemove", e=>{
+    const card = e.target.closest(".thumb")?.querySelector(".mini-card");
+    document.querySelectorAll(".mini-card").forEach(c=>{
+      if(c!==card){ c.style.transform=""; const f=c.querySelector(".foil"); if(f) f.style.backgroundPosition=""; }
+    });
+    if(!card) return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left)/r.width  - .5;
+    const y = (e.clientY - r.top)/r.height - .5;
+    card.style.transform = `rotateY(${x*22}deg) rotateX(${-y*22}deg) scale(1.04)`;
+    const foil = card.querySelector(".foil");
+    if(foil) foil.style.backgroundPosition = `${50+x*100}% ${50+y*100}%`;
+  });
+}
+</script>
+</body>
+</html>
