@@ -10,148 +10,83 @@
 <style>
 /* ============ TOKENS ============ */
 :root{
-  --ink:#0B0F1A;            /* พื้นหลังหลัก — น้ำเงินหมึกแบบหลังการ์ด */
-  --ink-2:#121829;          /* การ์ด/แผง */
-  --ink-3:#1B2236;          /* hover */
-  --line:#27304A;           /* เส้นแบ่ง */
-  --paper:#EDEFF6;          /* ตัวอักษรหลัก */
-  --dim:#8A93AD;            /* ตัวอักษรรอง */
-  --red:#E8364B;            /* แดงโจรสลัด */
-  --gold:#E5B84B;           /* ทองฟอยล์ */
+  --ink:#0B0F1A; --ink-2:#121829; --ink-3:#1B2236;
+  --line:#27304A; --paper:#EDEFF6; --dim:#8A93AD;
+  --red:#E8364B; --gold:#E5B84B;
   --holo:linear-gradient(115deg,#7df0ff 0%,#a78bfa 25%,#ff8fb0 50%,#ffd66b 75%,#7df0ff 100%);
+  --r-c:#8A93AD; --r-uc:#5BCF86; --r-r:#4FA8FF; --r-sr:#B07CFF; --r-sec:#FFD66B; --r-psa:#FF5C5C; --r-l:#FF9D5C;
   --font-display:'Chakra Petch',sans-serif;
   --font-body:'IBM Plex Sans Thai',sans-serif;
   --radius:14px;
 }
-:root{ --r-c:#8A93AD; --r-uc:#5BCF86; --r-r:#4FA8FF; --r-sr:#B07CFF; --r-sec:#FFD66B; --r-psa:#FF5C5C; }
-
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink);
-  color:var(--paper);
-  font-family:var(--font-body);
-  line-height:1.65;
-  overflow-x:hidden;
-}
+body{background:var(--ink);color:var(--paper);font-family:var(--font-body);line-height:1.65;overflow-x:hidden}
 ::selection{background:var(--red);color:#fff}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:var(--font-body)}
 
-/* พื้นหลังลายตาราง + แสง */
-.bg-grid{
-  position:fixed;inset:0;z-index:-2;
-  background-image:
-    linear-gradient(var(--line) 1px,transparent 1px),
-    linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:56px 56px;
-  opacity:.18;
+.bg-grid{position:fixed;inset:0;z-index:-2;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.18;
   mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);
-}
-.bg-glow{
-  position:fixed;z-index:-1;border-radius:50%;filter:blur(120px);opacity:.16;pointer-events:none;
-}
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 0%,transparent 70%);}
+.bg-glow{position:fixed;z-index:-1;border-radius:50%;filter:blur(120px);opacity:.16;pointer-events:none}
 .bg-glow.red{width:520px;height:520px;background:var(--red);top:-180px;right:-120px}
 .bg-glow.gold{width:420px;height:420px;background:var(--gold);bottom:-160px;left:-140px;opacity:.10}
-
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
 /* ============ NAV ============ */
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(11,15,26,.82);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.nav{display:flex;align-items:center;gap:28px;height:68px}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.04em}
-.logo .mark{
-  width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--red),#9b1c2c);
-  font-size:1.05rem;box-shadow:0 4px 14px rgba(232,54,75,.35);
-}
-.logo small{color:var(--dim);font-size:.62rem;font-weight:600;display:block;letter-spacing:.18em;margin-top:-2px}
-.nav-links{display:flex;gap:22px;margin-left:8px;font-size:.92rem;color:var(--dim)}
-.nav-links a{transition:color .2s}
-.nav-links a:hover,.nav-links a:focus-visible{color:var(--paper)}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
-.search-box{
-  display:flex;align-items:center;gap:8px;
-  background:var(--ink-2);border:1px solid var(--line);border-radius:10px;
-  padding:8px 14px;min-width:230px;
-}
-.search-box input{
-  background:none;border:none;outline:none;color:var(--paper);
-  font-family:var(--font-body);font-size:.9rem;width:100%;
-}
+header{position:sticky;top:0;z-index:100;background:rgba(11,15,26,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:24px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:1.12rem;letter-spacing:.04em}
+.logo .mark{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--red),#9b1c2c);font-size:1.05rem;box-shadow:0 4px 14px rgba(232,54,75,.35)}
+.logo small{color:var(--dim);font-size:.6rem;font-weight:600;display:block;letter-spacing:.18em;margin-top:-2px}
+.nav-links{display:flex;gap:20px;margin-left:4px;font-size:.9rem;color:var(--dim)}
+.nav-links a{transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.on{color:var(--paper)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--ink-2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:220px}
+.search-box input{background:none;border:none;outline:none;color:var(--paper);font-size:.9rem;width:100%}
 .search-box input::placeholder{color:var(--dim)}
-.cart-btn{
-  position:relative;display:flex;align-items:center;gap:8px;
-  background:var(--red);color:#fff;font-weight:600;font-size:.9rem;
-  padding:9px 18px;border-radius:10px;transition:transform .15s,box-shadow .2s;
-  box-shadow:0 4px 16px rgba(232,54,75,.3);
-}
+.cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:600;font-size:.9rem;padding:9px 18px;border-radius:10px;transition:transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(232,54,75,.3)}
 .cart-btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(232,54,75,.45)}
-.cart-count{
-  background:#fff;color:var(--red);font-family:var(--font-display);font-weight:700;
-  font-size:.78rem;min-width:22px;height:22px;border-radius:11px;
-  display:grid;place-items:center;padding:0 5px;
-}
+.cart-count{background:#fff;color:var(--red);font-family:var(--font-display);font-weight:700;font-size:.78rem;min-width:22px;height:22px;border-radius:11px;display:grid;place-items:center;padding:0 5px}
+
+/* ============ PAGE ROUTER ============ */
+.page{display:none;animation:fadeUp .35s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* ============ HERO ============ */
 .hero{padding:72px 0 56px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);font-size:.74rem;font-weight:600;letter-spacing:.16em;
-  color:var(--gold);border:1px solid rgba(229,184,75,.35);
-  padding:6px 14px;border-radius:999px;margin-bottom:20px;
-  background:rgba(229,184,75,.06);
-}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:.74rem;font-weight:600;letter-spacing:.16em;color:var(--gold);border:1px solid rgba(229,184,75,.35);padding:6px 14px;border-radius:999px;margin-bottom:20px;background:rgba(229,184,75,.06)}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1{
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.18;letter-spacing:.01em;
-}
-h1 .holo-text{
-  background:var(--holo);background-size:300% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:holoShift 6s linear infinite;
-}
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.18}
+.holo-text{background:var(--holo);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:holoShift 6s linear infinite}
 @keyframes holoShift{to{background-position:300% 0}}
-.hero p.lead{color:var(--dim);font-size:1.04rem;margin:18px 0 30px;max-width:520px}
+.hero p.lead{color:var(--dim);font-size:1.02rem;margin:18px 0 30px;max-width:520px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--font-display);font-weight:600;font-size:.95rem;
-  padding:13px 26px;border-radius:12px;transition:transform .15s,box-shadow .2s,background .2s;
-}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:.95rem;padding:13px 26px;border-radius:12px;transition:transform .15s,box-shadow .2s,background .2s;cursor:pointer}
 .btn-red{background:var(--red);color:#fff;box-shadow:0 6px 22px rgba(232,54,75,.35)}
 .btn-red:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,54,75,.5)}
 .btn-ghost{border:1px solid var(--line);color:var(--paper);background:var(--ink-2)}
 .btn-ghost:hover{background:var(--ink-3)}
+.btn-gold{background:var(--gold);color:#1a1408}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(229,184,75,.4)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn-block{width:100%}
 .hero-stats{display:flex;gap:34px;margin-top:38px}
 .hstat b{font-family:var(--font-display);font-size:1.5rem;color:var(--gold);display:block}
 .hstat span{font-size:.82rem;color:var(--dim)}
 
-/* การ์ดพัดในฮีโร่ */
+/* การ์ดพัด */
 .card-fan{position:relative;height:430px;perspective:1100px}
-.fan-card{
-  position:absolute;left:50%;top:50%;
-  width:215px;height:300px;border-radius:13px;
-  transform-origin:50% 120%;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 18px 50px rgba(0,0,0,.55);
-  transition:transform .45s cubic-bezier(.2,.8,.2,1);
-  overflow:hidden;
-}
-.fan-card::after{ /* แสงฟอยล์กวาด */
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 62%);
-  background-size:240% 100%;animation:sheen 5.5s ease-in-out infinite;
-}
+.fan-card{position:absolute;left:50%;top:50%;width:215px;height:300px;border-radius:13px;transform-origin:50% 120%;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.fan-card::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 62%);background-size:240% 100%;animation:sheen 5.5s ease-in-out infinite}
 @keyframes sheen{0%,100%{background-position:130% 0}50%{background-position:-30% 0}}
 .fan-card:nth-child(1){transform:translate(-50%,-50%) rotate(-16deg) translateX(-105px)}
 .fan-card:nth-child(2){transform:translate(-50%,-50%) rotate(-5deg) translateX(-32px) translateY(-12px);z-index:2}
@@ -160,199 +95,205 @@ h1 .holo-text{
 .card-fan:hover .fan-card:nth-child(2){transform:translate(-50%,-50%) rotate(-4deg) translateX(-38px) translateY(-30px)}
 .card-fan:hover .fan-card:nth-child(3){transform:translate(-50%,-50%) rotate(12deg) translateX(95px) translateY(-4px)}
 
-/* หน้าตาการ์ดจำลอง (CSS ล้วน) */
+/* หน้าตาการ์ดจำลอง */
 .tcg-face{position:absolute;inset:0;padding:11px;display:flex;flex-direction:column}
-.tcg-face .frame{
-  flex:1;border-radius:9px;border:2px solid rgba(255,255,255,.22);
-  position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
-}
-.tcg-red{background:linear-gradient(160deg,#3d1320,#1c0a12 60%),radial-gradient(circle at 70% 20%,rgba(232,54,75,.5),transparent 55%)}
-.tcg-red .frame{background:radial-gradient(circle at 30% 25%,rgba(232,54,75,.65),transparent 60%),radial-gradient(circle at 75% 70%,rgba(255,140,90,.4),transparent 55%),#220b13}
+.tcg-face .frame{flex:1;border-radius:9px;border:2px solid rgba(255,255,255,.22);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.tcg-red{background:linear-gradient(160deg,#3d1320,#1c0a12 60%)}
+.tcg-red .frame,.frame.tcg-red{background:radial-gradient(circle at 30% 25%,rgba(232,54,75,.65),transparent 60%),radial-gradient(circle at 75% 70%,rgba(255,140,90,.4),transparent 55%),#220b13}
 .tcg-purple{background:linear-gradient(160deg,#241338,#120a1c 60%)}
-.tcg-purple .frame{background:radial-gradient(circle at 65% 25%,rgba(176,124,255,.6),transparent 60%),radial-gradient(circle at 25% 75%,rgba(125,240,255,.35),transparent 55%),#170d24}
+.tcg-purple .frame,.frame.tcg-purple{background:radial-gradient(circle at 65% 25%,rgba(176,124,255,.6),transparent 60%),radial-gradient(circle at 25% 75%,rgba(125,240,255,.35),transparent 55%),#170d24}
 .tcg-gold{background:linear-gradient(160deg,#332710,#1a1408 60%)}
-.tcg-gold .frame{background:radial-gradient(circle at 50% 30%,rgba(255,214,107,.55),transparent 62%),radial-gradient(circle at 80% 80%,rgba(232,54,75,.3),transparent 50%),#211806}
-.tcg-face .cost{
-  position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;
-  background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.4);
-  display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.95rem;
-}
-.tcg-face .nameplate{
-  background:rgba(0,0,0,.62);backdrop-filter:blur(3px);
-  padding:7px 10px;border-top:1px solid rgba(255,255,255,.18);
-}
+.tcg-gold .frame,.frame.tcg-gold{background:radial-gradient(circle at 50% 30%,rgba(255,214,107,.55),transparent 62%),radial-gradient(circle at 80% 80%,rgba(232,54,75,.3),transparent 50%),#211806}
+.tcg-blue{background:linear-gradient(160deg,#10243d,#0a121c 60%)}
+.tcg-blue .frame,.frame.tcg-blue{background:radial-gradient(circle at 60% 30%,rgba(79,168,255,.6),transparent 60%),radial-gradient(circle at 20% 75%,rgba(125,240,255,.3),transparent 55%),#0b1726}
+.tcg-green{background:linear-gradient(160deg,#10301f,#0a1810 60%)}
+.tcg-green .frame,.frame.tcg-green{background:radial-gradient(circle at 55% 30%,rgba(91,207,134,.55),transparent 60%),radial-gradient(circle at 80% 75%,rgba(255,214,107,.25),transparent 50%),#0c1f14}
+.tcg-face .cost{position:absolute;top:8px;left:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.4);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:.95rem}
+.tcg-face .nameplate{background:rgba(0,0,0,.62);padding:7px 10px;border-top:1px solid rgba(255,255,255,.18)}
 .tcg-face .nameplate b{font-family:var(--font-display);font-size:.82rem;letter-spacing:.03em;display:block}
 .tcg-face .nameplate span{font-size:.62rem;color:rgba(255,255,255,.65)}
-.tcg-face .setno{
-  display:flex;justify-content:space-between;align-items:center;
-  font-family:var(--font-display);font-size:.6rem;color:rgba(255,255,255,.55);
-  padding:6px 2px 0;letter-spacing:.06em;
-}
-.rar-chip{
-  font-weight:700;font-size:.58rem;padding:2px 7px;border-radius:5px;color:#0B0F1A;
-}
+.tcg-face .setno{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-display);font-size:.6rem;color:rgba(255,255,255,.55);padding:6px 2px 0;letter-spacing:.06em}
+.rar-chip{font-weight:700;font-size:.58rem;padding:2px 7px;border-radius:5px;color:#0B0F1A}
 
-/* ============ SECTION HEADERS ============ */
-section{padding:64px 0}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap}
-.sec-head h2{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700}
-.sec-head h2 .accent{color:var(--red)}
+/* ============ SECTIONS ============ */
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2,.page-title{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700}
+.sec-head h2 .accent,.page-title .accent{color:var(--red)}
 .sec-head p{color:var(--dim);font-size:.92rem;margin-top:4px}
-.sec-link{font-family:var(--font-display);font-size:.85rem;font-weight:600;color:var(--gold);white-space:nowrap}
+.sec-link{font-family:var(--font-display);font-size:.85rem;font-weight:600;color:var(--gold);white-space:nowrap;cursor:pointer}
 .sec-link:hover{text-decoration:underline}
+.crumb{font-size:.82rem;color:var(--dim);margin:26px 0 8px}
+.crumb a{color:var(--gold);cursor:pointer}
 
 /* ============ FILTERS ============ */
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.chip{
-  font-family:var(--font-display);font-size:.82rem;font-weight:600;
-  padding:8px 18px;border-radius:999px;border:1px solid var(--line);
-  background:var(--ink-2);color:var(--dim);transition:all .2s;
-}
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.chip{font-family:var(--font-display);font-size:.82rem;font-weight:600;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:var(--ink-2);color:var(--dim);transition:all .2s}
 .chip:hover{border-color:var(--dim);color:var(--paper)}
 .chip.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 14px rgba(232,54,75,.3)}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:14px 0 26px}
+.toolbar .result-count{font-size:.86rem;color:var(--dim)}
+select.sort{background:var(--ink-2);border:1px solid var(--line);color:var(--paper);border-radius:10px;padding:9px 14px;font-size:.86rem;outline:none;cursor:pointer}
 
 /* ============ PRODUCT GRID ============ */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:22px}
-.product{
-  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);
-  overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;
-  display:flex;flex-direction:column;
-}
+.product{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;cursor:pointer}
 .product:hover{transform:translateY(-5px);border-color:#3A4566;box-shadow:0 16px 44px rgba(0,0,0,.5)}
-.product .thumb{
-  position:relative;aspect-ratio:1/1;display:grid;place-items:center;
-  background:radial-gradient(circle at 50% 38%,#1E2740,#0E1322 75%);
-  overflow:hidden;
-}
-/* การ์ดเดี่ยวใน thumbnail — เอียง 3D ตามเมาส์ + ฟอยล์ */
-.mini-card{
-  width:138px;height:192px;border-radius:9px;position:relative;overflow:hidden;
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 14px 34px rgba(0,0,0,.55);
-  transition:transform .12s ease-out;will-change:transform;
-  transform-style:preserve-3d;
-}
-.mini-card .foil{
-  position:absolute;inset:0;opacity:0;transition:opacity .25s;
-  background:var(--holo);background-size:300% 300%;mix-blend-mode:color-dodge;
-}
+.product .thumb{position:relative;aspect-ratio:1/1;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,#1E2740,#0E1322 75%);overflow:hidden}
+.mini-card{width:138px;height:192px;border-radius:9px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18);box-shadow:0 14px 34px rgba(0,0,0,.55);transition:transform .12s ease-out;will-change:transform;transform-style:preserve-3d}
+.mini-card .foil{position:absolute;inset:0;opacity:0;transition:opacity .25s;background:var(--holo);background-size:300% 300%;mix-blend-mode:color-dodge}
 .product:hover .mini-card .foil{opacity:.34}
 .mini-face{position:absolute;inset:0;padding:7px;display:flex;flex-direction:column}
 .mini-face .frame{flex:1;border-radius:6px;border:1.5px solid rgba(255,255,255,.2);position:relative;display:flex;align-items:flex-end;overflow:hidden}
 .mini-face .nm{width:100%;background:rgba(0,0,0,.6);padding:4px 7px;font-family:var(--font-display);font-size:.6rem;font-weight:600;letter-spacing:.04em}
-/* กล่องบูสเตอร์ */
-.box-3d{
-  width:128px;height:168px;position:relative;transform:rotate(-4deg);
-  transition:transform .3s;
-}
+.box-3d{width:128px;height:168px;position:relative;transform:rotate(-4deg);transition:transform .3s}
 .product:hover .box-3d{transform:rotate(-1deg) scale(1.05)}
-.box-3d .face-f{
-  position:absolute;inset:0;border-radius:8px;
-  border:1px solid rgba(255,255,255,.2);overflow:hidden;
-  box-shadow:10px 10px 0 rgba(0,0,0,.35),0 16px 36px rgba(0,0,0,.5);
-  display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px;
-}
-.box-3d .face-f .bx-logo{font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
-.box-3d .face-f .bx-set{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.box-3d .face-f .bx-sub{font-size:.58rem;color:rgba(255,255,255,.85)}
-/* เคสเกรด PSA */
-.slab{
-  width:120px;height:200px;border-radius:8px;position:relative;
-  background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
-  border:1px solid rgba(255,255,255,.32);
-  box-shadow:0 0 0 3px rgba(255,255,255,.07),0 16px 36px rgba(0,0,0,.55);
-  padding:8px;display:flex;flex-direction:column;gap:6px;
-}
-.slab .label{
-  background:#fff;color:#0B0F1A;border-radius:4px;padding:4px 7px;
-  font-family:var(--font-display);font-size:.55rem;font-weight:700;line-height:1.3;
-  display:flex;justify-content:space-between;align-items:center;
-}
+.box-3d .face-f{position:absolute;inset:0;border-radius:8px;border:1px solid rgba(255,255,255,.2);overflow:hidden;box-shadow:10px 10px 0 rgba(0,0,0,.35),0 16px 36px rgba(0,0,0,.5);display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px}
+.box-3d .bx-logo{font-family:var(--font-display);font-weight:700;font-size:.72rem;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.box-3d .bx-set{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.box-3d .bx-sub{font-size:.58rem;color:rgba(255,255,255,.85)}
+.slab{width:120px;height:200px;border-radius:8px;position:relative;background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.32);box-shadow:0 0 0 3px rgba(255,255,255,.07),0 16px 36px rgba(0,0,0,.55);padding:8px;display:flex;flex-direction:column;gap:6px}
+.slab .label{background:#fff;color:#0B0F1A;border-radius:4px;padding:4px 7px;font-family:var(--font-display);font-size:.55rem;font-weight:700;line-height:1.3;display:flex;justify-content:space-between;align-items:center}
 .slab .label .g10{font-size:1rem;color:var(--red)}
 .slab .inner{flex:1;border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.2);position:relative}
-
-/* badge rarity มุมการ์ด */
-.badge{
-  position:absolute;top:12px;left:12px;z-index:3;
-  font-family:var(--font-display);font-size:.66rem;font-weight:700;letter-spacing:.08em;
-  padding:4px 11px;border-radius:6px;color:#0B0F1A;
-}
-.badge.hot{
-  left:auto;right:12px;background:var(--red);color:#fff;
-  box-shadow:0 3px 12px rgba(232,54,75,.5);
-}
-.b-c{background:var(--r-c)} .b-uc{background:var(--r-uc)} .b-r{background:var(--r-r)}
-.b-sr{background:var(--r-sr)} .b-sec{background:var(--r-sec)} .b-psa{background:var(--r-psa);color:#fff}
-
+.badge{position:absolute;top:12px;left:12px;z-index:3;font-family:var(--font-display);font-size:.66rem;font-weight:700;letter-spacing:.08em;padding:4px 11px;border-radius:6px;color:#0B0F1A}
+.badge.hot{left:auto;right:12px;background:var(--red);color:#fff;box-shadow:0 3px 12px rgba(232,54,75,.5)}
+.b-c{background:var(--r-c)}.b-uc{background:var(--r-uc)}.b-r{background:var(--r-r)}.b-sr{background:var(--r-sr)}.b-sec{background:var(--r-sec)}.b-psa{background:var(--r-psa);color:#fff}.b-l{background:var(--r-l)}.b-box{background:#fff}
 .product .info{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
 .product .pname{font-weight:600;font-size:.98rem;line-height:1.45}
 .product .pmeta{font-size:.78rem;color:var(--dim);font-family:var(--font-display);letter-spacing:.03em}
 .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px}
 .price{font-family:var(--font-display);font-weight:700;font-size:1.22rem;color:var(--gold)}
 .price small{font-size:.72rem;color:var(--dim);font-weight:500;display:block;text-decoration:line-through}
-.add-btn{
-  width:40px;height:40px;border-radius:10px;background:var(--ink-3);
-  border:1px solid var(--line);display:grid;place-items:center;font-size:1.1rem;
-  transition:all .2s;color:var(--paper);
-}
+.add-btn{width:40px;height:40px;border-radius:10px;background:var(--ink-3);border:1px solid var(--line);display:grid;place-items:center;font-size:1.1rem;transition:all .2s;color:var(--paper)}
 .add-btn:hover{background:var(--red);border-color:var(--red);transform:scale(1.08)}
 .stock{font-size:.74rem;color:var(--r-uc)}
 .stock.low{color:var(--gold)}
 .stock.out{color:var(--dim)}
+.empty-msg{grid-column:1/-1;text-align:center;color:var(--dim);padding:60px 0;font-size:.95rem}
 
-/* ============ GRADING BANNER ============ */
-.grading{
-  background:linear-gradient(120deg,var(--ink-2),#1A1426);
-  border:1px solid var(--line);border-radius:20px;
-  padding:46px 48px;display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center;
-  position:relative;overflow:hidden;
-}
-.grading::before{
-  content:"";position:absolute;inset:0;
-  background:var(--holo);background-size:400% 400%;
-  opacity:.05;animation:holoShift 10s linear infinite;pointer-events:none;
-}
+/* ============ PRODUCT DETAIL ============ */
+.detail{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;padding:30px 0 60px;align-items:start}
+.detail-visual{background:radial-gradient(circle at 50% 40%,#1E2740,#0E1322 78%);border:1px solid var(--line);border-radius:20px;min-height:460px;display:grid;place-items:center;position:relative;overflow:hidden}
+.detail-visual .mini-card{width:220px;height:306px}
+.detail-visual .box-3d{width:200px;height:262px}
+.detail-visual .slab{width:190px;height:316px}
+.detail-info h2{font-family:var(--font-display);font-size:1.7rem;font-weight:700;line-height:1.3;margin:8px 0 6px}
+.detail-info .pmeta{font-family:var(--font-display);color:var(--dim);font-size:.92rem;letter-spacing:.04em}
+.detail-price{font-family:var(--font-display);font-weight:700;font-size:2.1rem;color:var(--gold);margin:20px 0 4px}
+.detail-price small{font-size:1rem;color:var(--dim);text-decoration:line-through;font-weight:500;margin-left:12px}
+.detail-desc{color:var(--dim);font-size:.95rem;margin:16px 0 24px;max-width:520px}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:26px;max-width:520px}
+.spec div{background:var(--ink-2);padding:12px 16px;font-size:.85rem}
+.spec div b{display:block;font-size:.72rem;color:var(--dim);font-weight:500;margin-bottom:2px}
+.qty-row{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.qty-ctl{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--ink-2)}
+.qty-ctl button{width:42px;height:46px;font-size:1.2rem;color:var(--dim);transition:color .2s}
+.qty-ctl button:hover{color:var(--paper)}
+.qty-ctl span{min-width:44px;text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+.detail-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============ CART / CHECKOUT ============ */
+.cart-layout{display:grid;grid-template-columns:1.5fr .9fr;gap:32px;padding:24px 0 70px;align-items:start}
+.cart-list{display:flex;flex-direction:column;gap:14px}
+.cart-item{display:grid;grid-template-columns:84px 1fr auto;gap:18px;background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);padding:16px;align-items:center}
+.cart-item .ci-thumb{width:84px;height:84px;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#1E2740,#0E1322 80%);overflow:hidden}
+.cart-item .ci-thumb .mini-card{width:48px;height:67px;border-radius:5px}
+.cart-item .ci-thumb .mini-face{padding:3px}
+.cart-item .ci-thumb .box-3d{width:44px;height:58px;transform:none}
+.cart-item .ci-thumb .slab{width:42px;height:70px;padding:3px;gap:2px}
+.cart-item .ci-thumb .slab .label{font-size:.32rem;padding:1px 3px}
+.cart-item .ci-thumb .slab .label .g10{font-size:.5rem}
+.cart-item b{font-size:.95rem;display:block}
+.cart-item .ci-meta{font-size:.78rem;color:var(--dim);font-family:var(--font-display)}
+.ci-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.ci-price{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:1.05rem}
+.ci-qty{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:8px}
+.ci-qty button{width:30px;height:32px;color:var(--dim)}
+.ci-qty button:hover{color:var(--paper)}
+.ci-qty span{min-width:32px;text-align:center;font-family:var(--font-display);font-weight:600;font-size:.9rem}
+.ci-del{font-size:.76rem;color:var(--dim);cursor:pointer}
+.ci-del:hover{color:var(--red)}
+.summary{background:var(--ink-2);border:1px solid var(--line);border-radius:18px;padding:26px;position:sticky;top:90px}
+.summary h3{font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:18px}
+.sum-row{display:flex;justify-content:space-between;font-size:.9rem;color:var(--dim);margin-bottom:10px}
+.sum-row.total{border-top:1px solid var(--line);padding-top:14px;margin-top:14px;color:var(--paper);font-weight:700;font-size:1.05rem}
+.sum-row.total .v{font-family:var(--font-display);color:var(--gold);font-size:1.4rem}
+.free-ship{font-size:.78rem;color:var(--r-uc);margin:8px 0 16px}
+
+/* ฟอร์ม */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-grid .full{grid-column:1/-1}
+.field label{display:block;font-size:.82rem;color:var(--dim);margin-bottom:6px;font-weight:500}
+.field input,.field select,.field textarea{width:100%;background:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--paper);font-size:.92rem;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field input.err{border-color:var(--red)}
+.field .hint{font-size:.74rem;color:var(--red);margin-top:4px;display:none}
+.field.show-err .hint{display:block}
+.field.show-err input{border-color:var(--red)}
+.opt-cards{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--ink);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .2s}
+.opt:hover{border-color:var(--dim)}
+.opt.sel{border-color:var(--gold);background:rgba(229,184,75,.05)}
+.opt input{accent-color:var(--red)}
+.opt b{font-size:.92rem;display:block}
+.opt span{font-size:.78rem;color:var(--dim)}
+.opt .opt-price{margin-left:auto;font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:.95rem}
+.panel{background:var(--ink-2);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:22px}
+.panel h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.panel h3 .step{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:.8rem}
+
+/* success */
+.success-box{max-width:560px;margin:60px auto 90px;text-align:center;background:var(--ink-2);border:1px solid var(--line);border-radius:22px;padding:50px 40px;position:relative;overflow:hidden}
+.success-box::before{content:"";position:absolute;inset:0;background:var(--holo);background-size:400% 400%;opacity:.05;animation:holoShift 10s linear infinite;pointer-events:none}
+.success-box .big{font-size:3.2rem;margin-bottom:14px}
+.success-box h2{font-family:var(--font-display);font-size:1.5rem;margin-bottom:10px}
+.success-box p{color:var(--dim);font-size:.93rem;margin-bottom:6px}
+.order-no{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--gold);background:var(--ink);border:1px dashed var(--gold);border-radius:12px;padding:14px;margin:22px 0;letter-spacing:.08em}
+
+/* ============ GRADING / CONTACT ============ */
+.grading{background:linear-gradient(120deg,var(--ink-2),#1A1426);border:1px solid var(--line);border-radius:20px;padding:46px 48px;display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center;position:relative;overflow:hidden}
+.grading::before{content:"";position:absolute;inset:0;background:var(--holo);background-size:400% 400%;opacity:.05;animation:holoShift 10s linear infinite;pointer-events:none}
 .grading h3{font-family:var(--font-display);font-size:1.55rem;font-weight:700;margin-bottom:12px}
 .grading p{color:var(--dim);font-size:.95rem;max-width:480px}
 .grading ul{list-style:none;margin:18px 0 24px;display:grid;gap:10px}
 .grading li{display:flex;gap:10px;font-size:.9rem;align-items:flex-start}
 .grading li::before{content:"✦";color:var(--gold);font-size:.8rem;margin-top:3px}
 .grade-visual{display:flex;justify-content:center}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;padding:20px 0 70px}
+.steps{display:grid;gap:0;margin-top:8px}
+.step-item{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.step-item:last-child{border-bottom:none}
+.step-item .num{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-family:var(--font-display);font-weight:700}
+.step-item b{display:block;margin-bottom:2px}
+.step-item span{font-size:.86rem;color:var(--dim)}
+.contact-card{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;gap:16px;align-items:center;margin-bottom:14px;transition:border-color .2s}
+.contact-card:hover{border-color:#3A4566}
+.contact-card .cic{width:48px;height:48px;border-radius:12px;background:var(--ink-3);display:grid;place-items:center;font-size:1.4rem;flex-shrink:0}
+.contact-card b{display:block;font-size:.95rem}
+.contact-card span{font-size:.84rem;color:var(--dim)}
 
-/* ============ TRUST STRIP ============ */
+/* ============ TRUST + FOOTER ============ */
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.trust-item{
-  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);
-  padding:24px;text-align:center;transition:border-color .25s;
-}
+.trust-item{background:var(--ink-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center;transition:border-color .25s}
 .trust-item:hover{border-color:#3A4566}
 .trust-item .ico{font-size:1.7rem;margin-bottom:10px}
 .trust-item b{font-family:var(--font-display);font-size:.95rem;display:block;margin-bottom:4px}
 .trust-item span{font-size:.8rem;color:var(--dim)}
-
-/* ============ FOOTER ============ */
-footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
+footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:30px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
 .foot-grid h4{font-family:var(--font-display);font-size:.88rem;font-weight:700;letter-spacing:.08em;margin-bottom:14px;color:var(--gold)}
-.foot-grid a,.foot-grid p{display:block;font-size:.86rem;color:var(--dim);margin-bottom:9px;transition:color .2s}
+.foot-grid a,.foot-grid p{display:block;font-size:.86rem;color:var(--dim);margin-bottom:9px;transition:color .2s;cursor:pointer}
 .foot-grid a:hover{color:var(--paper)}
 .copy{border-top:1px solid var(--line);padding-top:22px;font-size:.78rem;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 /* toast */
-.toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
-  background:var(--ink-3);border:1px solid var(--gold);color:var(--paper);
-  font-family:var(--font-display);font-size:.88rem;font-weight:600;
-  padding:13px 26px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.6);
-  opacity:0;transition:all .35s cubic-bezier(.2,.8,.2,1);z-index:200;pointer-events:none;
-}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink-3);border:1px solid var(--gold);color:var(--paper);font-family:var(--font-display);font-size:.88rem;font-weight:600;padding:13px 26px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,.6);opacity:0;transition:all .35s cubic-bezier(.2,.8,.2,1);z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.err{border-color:var(--red)}
 
-/* focus + motion */
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:980px){
@@ -362,7 +303,10 @@ footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
   .foot-grid{grid-template-columns:1fr 1fr}
   .trust{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
-  .search-box{min-width:0;flex:1}
+  .detail{grid-template-columns:1fr;gap:30px}
+  .cart-layout{grid-template-columns:1fr}
+  .summary{position:static}
+  .two-col{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   .hero-stats{gap:22px}
@@ -370,6 +314,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
   .mini-card{width:110px;height:154px}
   .search-box{display:none}
   .trust{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .cart-item{grid-template-columns:64px 1fr;row-gap:12px}
+  .ci-right{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
 }
 </style>
 </head>
@@ -381,160 +328,255 @@ footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
 <!-- ================= NAV ================= -->
 <header>
   <div class="container nav">
-    <a href="#" class="logo">
+    <a class="logo" onclick="go('home')">
       <span class="mark">⚓</span>
       <span>GRAND LINE<small>CARD SHOP TH</small></span>
     </a>
     <nav class="nav-links" aria-label="เมนูหลัก">
-      <a href="#singles">การ์ดเดี่ยว</a>
-      <a href="#boxes">กล่องบูสเตอร์</a>
-      <a href="#graded">การ์ดเกรด</a>
-      <a href="#grading">บริการส่งเกรด</a>
+      <a data-nav="home" onclick="go('home')">หน้าแรก</a>
+      <a data-nav="products" onclick="go('products')">สินค้าทั้งหมด</a>
+      <a data-nav="grading" onclick="go('grading')">ส่งเกรดการ์ด</a>
+      <a data-nav="contact" onclick="go('contact')">ติดต่อเรา</a>
     </nav>
     <div class="nav-right">
       <div class="search-box">
         <span aria-hidden="true">🔍</span>
-        <input type="search" id="searchInput" placeholder="ค้นหาการ์ด เช่น OP-09, Leader, SEC...">
+        <input type="search" id="searchInput" placeholder="ค้นหาการ์ด เช่น OP-09, SEC, Leader...">
       </div>
-      <button class="cart-btn" id="cartBtn">
+      <button class="cart-btn" onclick="go('cart')">
         🛒 ตะกร้า <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
 <main>
-<section class="hero container">
-  <div>
-    <span class="eyebrow"><span class="dot"></span> เปิดจอง OP-16 รอบ PRE-ORDER แล้ววันนี้</span>
-    <h1>ล่าสมบัติใบต่อไปของคุณ<br>ที่ร้านการ์ด <span class="holo-text">ONE PIECE</span> ตัวจริง</h1>
-    <p class="lead">การ์ดเดี่ยวระดับ SR / SEC / Manga Rare, กล่องบูสเตอร์ซีลแท้จากญี่ปุ่น และการ์ดเกรด PSA — ตรวจสอบของแท้ทุกใบก่อนส่ง พร้อมแพ็กกันกระแทกระดับนักสะสม</p>
-    <div class="hero-actions">
-      <a href="#singles" class="btn btn-red">เลือกซื้อการ์ดเดี่ยว →</a>
-      <a href="#boxes" class="btn btn-ghost">ดูกล่องบูสเตอร์</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hstat"><b>4,800+</b><span>การ์ดในสต็อก</span></div>
-      <div class="hstat"><b>100%</b><span>ของแท้ ตรวจทุกใบ</span></div>
-      <div class="hstat"><b>24 ชม.</b><span>จัดส่งทั่วไทย</span></div>
-    </div>
-  </div>
-
-  <div class="card-fan" aria-hidden="true">
-    <div class="fan-card tcg-red">
-      <div class="tcg-face">
-        <div class="frame"><span class="cost">5</span>
-          <div class="nameplate"><b>STRAW HAT LEADER</b><span>Leader · Red</span></div>
-        </div>
-        <div class="setno"><span>OP-09 · 001</span><span class="rar-chip" style="background:var(--r-r)">L</span></div>
+<!-- ================= PAGE: HOME ================= -->
+<div class="page" id="page-home">
+  <section class="hero container">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> เปิดจอง OP-16 รอบ PRE-ORDER แล้ววันนี้</span>
+      <h1>ล่าสมบัติใบต่อไปของคุณ<br>ที่ร้านการ์ด <span class="holo-text">ONE PIECE</span> ตัวจริง</h1>
+      <p class="lead">การ์ดเดี่ยวระดับ SR / SEC / Manga Rare, กล่องบูสเตอร์ซีลแท้จากญี่ปุ่น และการ์ดเกรด PSA — ตรวจสอบของแท้ทุกใบก่อนส่ง พร้อมแพ็กกันกระแทกระดับนักสะสม</p>
+      <div class="hero-actions">
+        <button class="btn btn-red" onclick="go('products')">เลือกซื้อสินค้า →</button>
+        <button class="btn btn-ghost" onclick="go('grading')">บริการส่งเกรด</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>4,800+</b><span>การ์ดในสต็อก</span></div>
+        <div class="hstat"><b>100%</b><span>ของแท้ ตรวจทุกใบ</span></div>
+        <div class="hstat"><b>24 ชม.</b><span>จัดส่งทั่วไทย</span></div>
       </div>
     </div>
-    <div class="fan-card tcg-purple">
-      <div class="tcg-face">
-        <div class="frame"><span class="cost">7</span>
-          <div class="nameplate"><b>EMPEROR'S WRATH</b><span>Character · Purple</span></div>
+    <div class="card-fan" aria-hidden="true">
+      <div class="fan-card tcg-red"><div class="tcg-face"><div class="frame"><span class="cost">5</span><div class="nameplate"><b>STRAW HAT LEADER</b><span>Leader · Red</span></div></div><div class="setno"><span>OP-09 · 001</span><span class="rar-chip" style="background:var(--r-l)">L</span></div></div></div>
+      <div class="fan-card tcg-purple"><div class="tcg-face"><div class="frame"><span class="cost">7</span><div class="nameplate"><b>EMPEROR'S WRATH</b><span>Character · Purple</span></div></div><div class="setno"><span>OP-10 · 118</span><span class="rar-chip" style="background:var(--r-sr)">SR</span></div></div></div>
+      <div class="fan-card tcg-gold"><div class="tcg-face"><div class="frame"><span class="cost">9</span><div class="nameplate"><b>KING OF PIRATES</b><span>Secret Rare · Foil</span></div></div><div class="setno"><span>OP-09 · SEC</span><span class="rar-chip" style="background:var(--r-sec)">SEC</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head">
+      <div><h2>สินค้าแนะนำ <span class="accent">HOT ITEMS</span></h2><p>ของเด็ดเข้าใหม่ อัปเดตทุกสัปดาห์</p></div>
+      <a class="sec-link" onclick="go('products')">ดูสินค้าทั้งหมด →</a>
+    </div>
+    <div class="grid" id="featuredGrid"></div>
+  </section>
+
+  <section class="container">
+    <div class="grading">
+      <div>
+        <h3>บริการส่งเกรดการ์ด PSA 🇺🇸</h3>
+        <p>มีการ์ดเด็ดอยู่ในมือ? ส่งเกรดกับเราแบบรวมรอบ (Group Submission) ประหยัดกว่า ปลอดภัยกว่า ติดตามสถานะได้ทุกขั้นตอน</p>
+        <ul>
+          <li>ตรวจสภาพเบื้องต้น (Pre-Grade) ฟรี ประเมินโอกาสได้เกรด 9–10 ก่อนส่งจริง</li>
+          <li>ประกันการขนส่งเต็มมูลค่าการ์ด ทั้งขาไปและขากลับ</li>
+          <li>รอบส่งทุกเดือน ระยะเวลาประมาณ 45–60 วัน</li>
+        </ul>
+        <button class="btn btn-red" onclick="go('grading')">จองรอบส่งเกรดเดือนนี้</button>
+      </div>
+      <div class="grade-visual" aria-hidden="true">
+        <div class="slab">
+          <div class="label"><span>ONE PIECE OPCG<br>SECRET RARE · 2025</span><span class="g10">10</span></div>
+          <div class="inner tcg-gold"></div>
         </div>
-        <div class="setno"><span>OP-10 · 118</span><span class="rar-chip" style="background:var(--r-sr)">SR</span></div>
       </div>
     </div>
-    <div class="fan-card tcg-gold">
-      <div class="tcg-face">
-        <div class="frame"><span class="cost">9</span>
-          <div class="nameplate"><b>KING OF PIRATES</b><span>Secret Rare · Foil</span></div>
+  </section>
+
+  <section class="container">
+    <div class="trust">
+      <div class="trust-item"><div class="ico">🛡️</div><b>ของแท้ 100%</b><span>ตรวจสอบทุกใบโดยทีมงาน รับประกันคืนเงินเต็มจำนวน</span></div>
+      <div class="trust-item"><div class="ico">📦</div><b>แพ็กระดับนักสะสม</b><span>ซองแข็ง + กันกระแทก + กล่องลูกฟูก ทุกออเดอร์</span></div>
+      <div class="trust-item"><div class="ico">🚚</div><b>ส่งไวใน 24 ชม.</b><span>สั่งก่อน 15:00 ส่งวันเดียวกัน มีเลขแทร็กทุกกล่อง</span></div>
+      <div class="trust-item"><div class="ico">💬</div><b>ปรึกษาฟรี</b><span>ทีมงานเล่นจริง ตอบไว ทั้ง LINE และ Facebook</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= PAGE: PRODUCTS ================= -->
+<div class="page" id="page-products">
+  <div class="container">
+    <div class="crumb"><a onclick="go('home')">หน้าแรก</a> / สินค้าทั้งหมด</div>
+    <div class="sec-head" style="margin-top:6px">
+      <div><h2 class="page-title">สินค้าทั้งหมด <span class="accent">ALL PRODUCTS</span></h2></div>
+    </div>
+    <div class="filter-bar" id="filterBar" role="group" aria-label="กรองสินค้า">
+      <button class="chip active" data-filter="all">ทั้งหมด</button>
+      <button class="chip" data-filter="single">การ์ดเดี่ยว</button>
+      <button class="chip" data-filter="box">กล่อง / เด็ค</button>
+      <button class="chip" data-filter="graded">การ์ดเกรด</button>
+      <button class="chip" data-filter="sec">SEC</button>
+      <button class="chip" data-filter="sr">SR</button>
+      <button class="chip" data-filter="r">R / UC / C</button>
+    </div>
+    <div class="toolbar">
+      <span class="result-count" id="resultCount"></span>
+      <select class="sort" id="sortSel" aria-label="เรียงลำดับ">
+        <option value="hot">เรียงตาม: แนะนำ</option>
+        <option value="price-asc">ราคา: ต่ำ → สูง</option>
+        <option value="price-desc">ราคา: สูง → ต่ำ</option>
+        <option value="name">ชื่อสินค้า ก-ฮ</option>
+      </select>
+    </div>
+    <div class="grid" id="allGrid" style="padding-bottom:70px"></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: DETAIL ================= -->
+<div class="page" id="page-detail">
+  <div class="container">
+    <div class="crumb"><a onclick="go('home')">หน้าแรก</a> / <a onclick="go('products')">สินค้าทั้งหมด</a> / <span id="crumbName"></span></div>
+    <div class="detail" id="detailBody"></div>
+    <div class="sec-head"><div><h2>สินค้าใกล้เคียง</h2></div></div>
+    <div class="grid" id="relatedGrid" style="padding-bottom:70px"></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: CART ================= -->
+<div class="page" id="page-cart">
+  <div class="container">
+    <div class="crumb"><a onclick="go('home')">หน้าแรก</a> / ตะกร้าสินค้า</div>
+    <h2 class="page-title" style="margin-top:6px">ตะกร้าสินค้า <span class="accent">CART</span></h2>
+    <div class="cart-layout" id="cartLayout"></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: CHECKOUT ================= -->
+<div class="page" id="page-checkout">
+  <div class="container">
+    <div class="crumb"><a onclick="go('cart')">ตะกร้า</a> / ชำระเงิน</div>
+    <h2 class="page-title" style="margin-top:6px">ชำระเงิน <span class="accent">CHECKOUT</span></h2>
+    <div class="cart-layout">
+      <div>
+        <div class="panel">
+          <h3><span class="step">1</span> ข้อมูลผู้รับ</h3>
+          <div class="form-grid">
+            <div class="field"><label for="f-name">ชื่อ-นามสกุล *</label><input id="f-name" type="text" placeholder="เช่น ดอน ใจดี"><div class="hint">กรุณากรอกชื่อ-นามสกุล</div></div>
+            <div class="field"><label for="f-phone">เบอร์โทรศัพท์ *</label><input id="f-phone" type="tel" inputmode="numeric" placeholder="08xxxxxxxx"><div class="hint">กรอกเบอร์ 9–10 หลัก</div></div>
+            <div class="field full"><label for="f-addr">ที่อยู่จัดส่ง *</label><textarea id="f-addr" rows="3" placeholder="บ้านเลขที่ / หมู่บ้าน / ถนน / แขวง-ตำบล / เขต-อำเภอ / จังหวัด / รหัสไปรษณีย์"></textarea><div class="hint">กรุณากรอกที่อยู่จัดส่ง</div></div>
+            <div class="field full"><label for="f-note">หมายเหตุถึงร้าน (ถ้ามี)</label><input id="f-note" type="text" placeholder="เช่น ขอซองแข็ง 2 ชั้น / ฝากเขียนการ์ดอวยพร"></div>
+          </div>
         </div>
-        <div class="setno"><span>OP-09 · SEC</span><span class="rar-chip" style="background:var(--r-sec)">SEC</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SINGLES ================= -->
-<section id="singles" class="container">
-  <div class="sec-head">
-    <div>
-      <h2>การ์ดเดี่ยว <span class="accent">SINGLES</span></h2>
-      <p>คัดสภาพ NM ทุกใบ · ใส่ซองแข็ง Toploader ก่อนส่ง</p>
-    </div>
-    <a href="#" class="sec-link">ดูทั้งหมด 4,800+ ใบ →</a>
-  </div>
-
-  <div class="filter-bar" id="filterBar" role="group" aria-label="กรองตามระดับความหายาก">
-    <button class="chip active" data-filter="all">ทั้งหมด</button>
-    <button class="chip" data-filter="sec">SEC</button>
-    <button class="chip" data-filter="sr">SR</button>
-    <button class="chip" data-filter="r">R</button>
-    <button class="chip" data-filter="uc">UC / C</button>
-    <button class="chip" data-filter="psa">เกรดแล้ว (PSA)</button>
-  </div>
-
-  <div class="grid" id="productGrid"><!-- JS render --></div>
-</section>
-
-<!-- ================= BOOSTER BOXES ================= -->
-<section id="boxes" class="container">
-  <div class="sec-head">
-    <div>
-      <h2>กล่องบูสเตอร์ <span class="accent">SEALED</span></h2>
-      <p>ซีลโรงงานจากญี่ปุ่น · มีใบกำกับล็อตนำเข้า</p>
-    </div>
-    <a href="#" class="sec-link">ดูทุกเซ็ต →</a>
-  </div>
-  <div class="grid" id="boxGrid"><!-- JS render --></div>
-</section>
-
-<!-- ================= GRADED ================= -->
-<section id="graded" class="container">
-  <div class="sec-head">
-    <div>
-      <h2>การ์ดเกรด <span class="accent">PSA / BGS</span></h2>
-      <p>สำหรับนักสะสมและนักลงทุน · ตรวจสอบเลข Cert ได้ทุกใบ</p>
-    </div>
-    <a href="#" class="sec-link">ดูการ์ดเกรดทั้งหมด →</a>
-  </div>
-  <div class="grid" id="gradedGrid"><!-- JS render --></div>
-</section>
-
-<!-- ================= GRADING SERVICE ================= -->
-<section id="grading" class="container">
-  <div class="grading">
-    <div>
-      <h3>บริการส่งเกรดการ์ด PSA 🇺🇸</h3>
-      <p>มีการ์ดเด็ดอยู่ในมือ? ส่งเกรดกับเราแบบรวมรอบ (Group Submission) ประหยัดกว่า ปลอดภัยกว่า ติดตามสถานะได้ทุกขั้นตอน</p>
-      <ul>
-        <li>ตรวจสภาพเบื้องต้น (Pre-Grade) ฟรี ประเมินโอกาสได้เกรด 9–10 ก่อนส่งจริง</li>
-        <li>ประกันการขนส่งเต็มมูลค่าการ์ด ทั้งขาไปและขากลับ</li>
-        <li>รอบส่งทุกเดือน ระยะเวลาประมาณ 45–60 วัน</li>
-      </ul>
-      <a href="#" class="btn btn-red">จองรอบส่งเกรดเดือนนี้</a>
-    </div>
-    <div class="grade-visual" aria-hidden="true">
-      <div class="slab">
-        <div class="label">
-          <span>ONE PIECE OPCG<br>SECRET RARE · 2025</span>
-          <span class="g10">10</span>
+        <div class="panel">
+          <h3><span class="step">2</span> วิธีจัดส่ง</h3>
+          <div class="opt-cards" id="shipOpts">
+            <label class="opt sel"><input type="radio" name="ship" value="50" checked><div><b>ขนส่งด่วน (Flash / J&T)</b><span>ถึงภายใน 1–2 วันทำการ</span></div><span class="opt-price">฿50</span></label>
+            <label class="opt"><input type="radio" name="ship" value="80"><div><b>EMS ไปรษณีย์ไทย</b><span>ถึงภายใน 1–2 วันทำการ พร้อมประกัน</span></div><span class="opt-price">฿80</span></label>
+            <label class="opt"><input type="radio" name="ship" value="0"><div><b>รับเองหน้าร้าน</b><span>นัดรับได้ทุกวัน 10:00–20:00 น.</span></div><span class="opt-price">ฟรี</span></label>
+          </div>
         </div>
-        <div class="inner tcg-gold">
-          <div class="tcg-face" style="padding:6px">
-            <div class="frame">
-              <div class="nameplate" style="padding:4px 7px"><b style="font-size:.62rem">GEM MINT</b><span style="font-size:.52rem">Graded Slab</span></div>
-            </div>
+        <div class="panel">
+          <h3><span class="step">3</span> วิธีชำระเงิน</h3>
+          <div class="opt-cards" id="payOpts">
+            <label class="opt sel"><input type="radio" name="pay" value="promptpay" checked><div><b>พร้อมเพย์ (PromptPay)</b><span>สแกน QR หลังยืนยันคำสั่งซื้อ</span></div></label>
+            <label class="opt"><input type="radio" name="pay" value="transfer"><div><b>โอนผ่านบัญชีธนาคาร</b><span>แจ้งสลิปทาง LINE ภายใน 24 ชม.</span></div></label>
+            <label class="opt"><input type="radio" name="pay" value="cod"><div><b>เก็บเงินปลายทาง (COD)</b><span>+3% ของยอดสั่งซื้อ เฉพาะออเดอร์ไม่เกิน ฿5,000</span></div></label>
           </div>
         </div>
       </div>
+      <div class="summary">
+        <h3>สรุปคำสั่งซื้อ</h3>
+        <div id="checkoutSummary"></div>
+        <button class="btn btn-red btn-block" style="margin-top:18px" onclick="placeOrder()">ยืนยันคำสั่งซื้อ ✓</button>
+        <p style="font-size:.74rem;color:var(--dim);margin-top:12px;text-align:center">กดยืนยันแล้วทีมงานจะติดต่อกลับภายใน 30 นาที (เวลาทำการ)</p>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ================= TRUST ================= -->
-<section class="container">
-  <div class="trust">
-    <div class="trust-item"><div class="ico">🛡️</div><b>ของแท้ 100%</b><span>ตรวจสอบทุกใบโดยทีมงาน รับประกันคืนเงินเต็มจำนวน</span></div>
-    <div class="trust-item"><div class="ico">📦</div><b>แพ็กระดับนักสะสม</b><span>ซองแข็ง + กันกระแทก + กล่องลูกฟูก ทุกออเดอร์</span></div>
-    <div class="trust-item"><div class="ico">🚚</div><b>ส่งไวใน 24 ชม.</b><span>สั่งก่อน 15:00 ส่งวันเดียวกัน มีเลขแทร็กทุกกล่อง</span></div>
-    <div class="trust-item"><div class="ico">💬</div><b>ปรึกษาฟรี</b><span>ทีมงานเล่นจริง ตอบไว ทั้ง LINE และ Facebook</span></div>
+<!-- ================= PAGE: SUCCESS ================= -->
+<div class="page" id="page-success">
+  <div class="container">
+    <div class="success-box">
+      <div class="big">🏴‍☠️</div>
+      <h2>สั่งซื้อสำเร็จ ขอบคุณครับ!</h2>
+      <p>เราได้รับคำสั่งซื้อของคุณแล้ว ทีมงานจะตรวจสอบและติดต่อกลับโดยเร็วที่สุด</p>
+      <div class="order-no" id="orderNo">GL-000000</div>
+      <p id="successDetail" style="margin-bottom:22px"></p>
+      <button class="btn btn-gold" onclick="go('products')">เลือกซื้อสินค้าต่อ →</button>
+    </div>
   </div>
-</section>
+</div>
+
+<!-- ================= PAGE: GRADING ================= -->
+<div class="page" id="page-grading">
+  <div class="container">
+    <div class="crumb"><a onclick="go('home')">หน้าแรก</a> / บริการส่งเกรดการ์ด</div>
+    <h2 class="page-title" style="margin-top:6px">บริการส่งเกรด <span class="accent">PSA SUBMISSION</span></h2>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--dim);margin:10px 0 8px">ส่งเกรดแบบรวมรอบ (Group Submission) กับร้าน ประหยัดค่าส่งระหว่างประเทศ มีประกันเต็มมูลค่า และติดตามสถานะได้ทุกขั้นตอนผ่าน LINE</p>
+        <div class="steps">
+          <div class="step-item"><span class="num">1</span><div><b>ส่งรูปการ์ดให้ประเมินฟรี</b><span>ทีมงาน Pre-Grade ประเมินโอกาสได้ 9–10 ก่อนตัดสินใจ</span></div></div>
+          <div class="step-item"><span class="num">2</span><div><b>นำการ์ดมาส่งหรือส่งพัสดุมาที่ร้าน</b><span>แนะนำใส่ซองแข็ง + Team Bag ทุกใบ</span></div></div>
+          <div class="step-item"><span class="num">3</span><div><b>ร้านรวบรวมและส่งเข้า PSA สหรัฐฯ</b><span>ตัดรอบทุกสิ้นเดือน พร้อมประกันขนส่งเต็มมูลค่า</span></div></div>
+          <div class="step-item"><span class="num">4</span><div><b>รับการ์ดกลับพร้อมเคสเกรด</b><span>ระยะเวลารวมประมาณ 45–60 วัน แจ้งเตือนทุกสถานะ</span></div></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:0">
+        <h3><span class="step">✦</span> จองรอบส่งเกรดเดือนนี้</h3>
+        <div class="form-grid">
+          <div class="field"><label for="g-name">ชื่อผู้ติดต่อ *</label><input id="g-name" type="text" placeholder="ชื่อเล่นก็ได้"><div class="hint">กรุณากรอกชื่อ</div></div>
+          <div class="field"><label for="g-line">LINE ID / เบอร์โทร *</label><input id="g-line" type="text" placeholder="สำหรับติดต่อกลับ"><div class="hint">กรุณากรอกช่องทางติดต่อ</div></div>
+          <div class="field"><label for="g-qty">จำนวนการ์ดที่จะส่ง</label>
+            <select id="g-qty"><option>1–3 ใบ</option><option>4–10 ใบ</option><option>11–25 ใบ</option><option>มากกว่า 25 ใบ</option></select>
+          </div>
+          <div class="field"><label for="g-tier">ระดับบริการ</label>
+            <select id="g-tier"><option>Value (การ์ดมูลค่าไม่เกิน $500)</option><option>Regular</option><option>Express</option></select>
+          </div>
+          <div class="field full"><label for="g-detail">รายละเอียดการ์ด (ถ้ามี)</label><textarea id="g-detail" rows="3" placeholder="เช่น OP-09 SEC 1 ใบ, Promo งานแข่ง 2 ใบ"></textarea></div>
+        </div>
+        <button class="btn btn-red btn-block" style="margin-top:18px" onclick="submitGrading()">ส่งคำขอจองรอบ →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PAGE: CONTACT ================= -->
+<div class="page" id="page-contact">
+  <div class="container">
+    <div class="crumb"><a onclick="go('home')">หน้าแรก</a> / ติดต่อเรา</div>
+    <h2 class="page-title" style="margin-top:6px">ติดต่อเรา <span class="accent">CONTACT</span></h2>
+    <div class="two-col">
+      <div>
+        <div class="contact-card"><span class="cic">💬</span><div><b>LINE Official</b><span>@grandlinecards — ตอบไวสุด แนะนำช่องทางนี้</span></div></div>
+        <div class="contact-card"><span class="cic">📘</span><div><b>Facebook Page</b><span>Grand Line Card Shop TH — ไลฟ์เปิดกล่องทุกศุกร์ 20:00</span></div></div>
+        <div class="contact-card"><span class="cic">📞</span><div><b>โทรศัพท์</b><span>0X-XXX-XXXX ทุกวัน 10:00–20:00 น.</span></div></div>
+        <div class="contact-card"><span class="cic">📍</span><div><b>หน้าร้าน</b><span>ชั้น 3 โซนเกมการ์ด ห้างฯ ใจกลางเมือง กรุงเทพฯ</span></div></div>
+      </div>
+      <div class="panel" style="margin-bottom:0">
+        <h3><span class="step">✉</span> ฝากข้อความถึงร้าน</h3>
+        <div class="form-grid">
+          <div class="field"><label for="c-name">ชื่อ *</label><input id="c-name" type="text"><div class="hint">กรุณากรอกชื่อ</div></div>
+          <div class="field"><label for="c-contact">ช่องทางติดต่อกลับ *</label><input id="c-contact" type="text" placeholder="LINE / เบอร์ / อีเมล"><div class="hint">กรุณากรอกช่องทางติดต่อ</div></div>
+          <div class="field full"><label for="c-msg">ข้อความ *</label><textarea id="c-msg" rows="4" placeholder="สอบถามราคา / เช็กสต็อก / เสนอขายการ์ด"></textarea><div class="hint">กรุณากรอกข้อความ</div></div>
+        </div>
+        <button class="btn btn-red btn-block" style="margin-top:18px" onclick="submitContact()">ส่งข้อความ →</button>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 
 <!-- ================= FOOTER ================= -->
@@ -542,32 +584,26 @@ footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
   <div class="container">
     <div class="foot-grid">
       <div>
-        <a href="#" class="logo" style="margin-bottom:14px">
-          <span class="mark">⚓</span>
-          <span>GRAND LINE<small>CARD SHOP TH</small></span>
-        </a>
+        <a class="logo" onclick="go('home')" style="margin-bottom:14px"><span class="mark">⚓</span><span>GRAND LINE<small>CARD SHOP TH</small></span></a>
         <p>ร้านการ์ดเกม One Piece สำหรับนักสะสมชาวไทย<br>เปิดทุกวัน 10:00 – 20:00 น.</p>
       </div>
       <div>
         <h4>สินค้า</h4>
-        <a href="#singles">การ์ดเดี่ยว</a>
-        <a href="#boxes">กล่องบูสเตอร์</a>
-        <a href="#graded">การ์ดเกรด PSA</a>
-        <a href="#">ซองและอุปกรณ์</a>
+        <a onclick="goFilter('single')">การ์ดเดี่ยว</a>
+        <a onclick="goFilter('box')">กล่องบูสเตอร์</a>
+        <a onclick="goFilter('graded')">การ์ดเกรด PSA</a>
       </div>
       <div>
         <h4>บริการ</h4>
-        <a href="#grading">ส่งเกรดการ์ด</a>
-        <a href="#">รับซื้อ–เทิร์นการ์ด</a>
-        <a href="#">เช็กราคาตลาด</a>
-        <a href="#">Pre-Order เซ็ตใหม่</a>
+        <a onclick="go('grading')">ส่งเกรดการ์ด</a>
+        <a onclick="go('contact')">รับซื้อ–เทิร์นการ์ด</a>
+        <a onclick="go('contact')">Pre-Order เซ็ตใหม่</a>
       </div>
       <div>
         <h4>ติดต่อเรา</h4>
-        <a href="#">LINE: @grandlinecards</a>
-        <a href="#">Facebook Page</a>
-        <a href="#">วิธีสั่งซื้อและชำระเงิน</a>
-        <a href="#">นโยบายการคืนสินค้า</a>
+        <a onclick="go('contact')">LINE: @grandlinecards</a>
+        <a onclick="go('contact')">Facebook Page</a>
+        <a onclick="go('contact')">วิธีสั่งซื้อและชำระเงิน</a>
       </div>
     </div>
     <div class="copy">
@@ -580,127 +616,351 @@ footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px}
 <div class="toast" id="toast" role="status">เพิ่มลงตะกร้าแล้ว ✓</div>
 
 <script>
-/* ============ DATA ============ */
-// แก้สินค้า/ราคา/รูปได้ที่นี่ — ใส่ field img:"url" เพื่อแทนการ์ด CSS ด้วยรูปจริง
-const singles = [
-  {name:"Leader การ์ดหายาก Alt-Art", set:"OP-09 · 001", rarity:"sr",  price:1630, old:1890, stock:"เหลือ 2 ใบ", low:true,  theme:"tcg-red",    hot:true},
-  {name:"Secret Rare ฟอยล์เต็มใบ",   set:"OP-09 · SEC", rarity:"sec", price:13806,            stock:"เหลือ 1 ใบ", low:true,  theme:"tcg-gold",   hot:true},
-  {name:"SR Parallel ลายแมงงะ",      set:"OP-13 · 118", rarity:"sr",  price:786,              stock:"มีสินค้า",            theme:"tcg-purple"},
-  {name:"Rare ตัวเด่นเมต้าปัจจุบัน",  set:"OP-10 · 042", rarity:"r",   price:425,              stock:"มีสินค้า",            theme:"tcg-red"},
-  {name:"SR สายเล่นจริง สภาพ NM",    set:"OP-12 · 077", rarity:"sr",  price:702,   old:850,   stock:"มีสินค้า",            theme:"tcg-purple"},
-  {name:"Rare Foil เหมาะลงเด็ค",     set:"OP-11 · 023", rarity:"r",   price:245,              stock:"มีสินค้า",            theme:"tcg-gold"},
-  {name:"ชุด UC/C ครบสี 40 ใบ",      set:"คละเซ็ต",     rarity:"uc",  price:250,              stock:"มีสินค้า",            theme:"tcg-red"},
-  {name:"Promo การ์ดงานแข่ง",       set:"P-058",       rarity:"r",   price:449,              stock:"เหลือ 3 ใบ", low:true, theme:"tcg-purple"},
-];
-const boxes = [
-  {name:"กล่องบูสเตอร์ OP-16 (Pre-Order)", set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:3290, stock:"เปิดจองรอบ 2", theme:"tcg-red",    code:"OP-16", hot:true},
-  {name:"กล่องบูสเตอร์ OP-15 ซีลแท้",      set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:3590, stock:"มีสินค้า",      theme:"tcg-purple", code:"OP-15"},
-  {name:"กล่องบูสเตอร์ OP-09 (หายาก)",     set:"24 ซอง / กล่อง · ภาษาญี่ปุ่น", price:5900, old:6500, stock:"เหลือ 2 กล่อง", low:true, theme:"tcg-gold", code:"OP-09"},
-  {name:"Starter Deck เริ่มเล่น",          set:"เด็คสำเร็จ 51 ใบ + เพลย์ชีต",  price:690,  stock:"มีสินค้า",      theme:"tcg-red",    code:"ST"},
-];
-const graded = [
-  {name:"PSA 10 Secret Rare เคสใส",  set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10", price:78384, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-gold", hot:true},
-  {name:"PSA 9 SR Alt-Art",          set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9",  price:12500, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-purple"},
-  {name:"PSA 10 Promo งานแข่งญี่ปุ่น", set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10", price:24900, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-red"},
-  {name:"BGS 9.5 Leader Parallel",   set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9.5",price:18800, stock:"เหลือ 1 ใบ", low:true, theme:"tcg-gold"},
+/* ================= DATA ================= */
+// แก้สินค้าได้ที่นี่ — เพิ่ม field img:"url" ในสินค้าใดก็ได้เพื่อใช้รูปจริงแทนการ์ด CSS
+const PRODUCTS = [
+  {id:1,  cat:"single", name:"Leader การ์ดหายาก Alt-Art",      set:"OP-09 · 001", rarity:"sr",  price:1630, old:1890, stock:2,  theme:"tcg-red",    hot:true,  desc:"การ์ด Leader ลายอาร์ตพิเศษจากเซ็ต OP-09 สภาพ Near Mint ตรวจสอบแล้ว เหมาะทั้งสะสมและลงเด็คแข่ง"},
+  {id:2,  cat:"single", name:"Secret Rare ฟอยล์เต็มใบ",        set:"OP-09 · SEC", rarity:"sec", price:13806,          stock:1,  theme:"tcg-gold",   hot:true,  desc:"SEC ตัวท็อปของเซ็ต ฟอยล์เต็มใบ สภาพสวยมาก เซนเตอร์ดี มีโอกาสเกรด 9–10 หากส่ง PSA"},
+  {id:3,  cat:"single", name:"SR Parallel ลายแมงงะ",           set:"OP-13 · 118", rarity:"sr",  price:786,            stock:5,  theme:"tcg-purple",            desc:"SR Parallel ลายเส้นแมงงะสุดคลาสสิก สภาพ NM จากซองตรง ใส่ซองแข็งทันทีหลังเปิด"},
+  {id:4,  cat:"single", name:"Rare ตัวเด่นเมต้าปัจจุบัน",       set:"OP-10 · 042", rarity:"r",   price:425,            stock:8,  theme:"tcg-red",               desc:"การ์ด Rare ตัวสำคัญในเมต้าปัจจุบัน ใช้ได้หลายเด็ค ราคาคุ้มสุดสำหรับสายเล่นจริง"},
+  {id:5,  cat:"single", name:"SR สายเล่นจริง สภาพ NM",         set:"OP-12 · 077", rarity:"sr",  price:702,  old:850,  stock:4,  theme:"tcg-purple",            desc:"SR สำหรับสายแข่ง สภาพ Near Mint ราคาลดพิเศษเฉพาะล็อตนี้"},
+  {id:6,  cat:"single", name:"Rare Foil เหมาะลงเด็ค",          set:"OP-11 · 023", rarity:"r",   price:245,            stock:12, theme:"tcg-gold",              desc:"Rare ฟอยล์สวย ๆ ราคาเบา เหมาะอัปเกรดเด็คให้ดูพรีเมียมขึ้น"},
+  {id:7,  cat:"single", name:"ชุด UC/C ครบสี 40 ใบ",           set:"คละเซ็ต",     rarity:"uc",  price:250,            stock:20, theme:"tcg-blue",              desc:"เซ็ตเริ่มต้นสำหรับมือใหม่ การ์ด UC/C คละสี 40 ใบ ไม่ซ้ำกัน คัดสภาพดีทุกใบ"},
+  {id:8,  cat:"single", name:"Promo การ์ดงานแข่ง",            set:"P-058",       rarity:"r",   price:449,            stock:3,  theme:"tcg-green",             desc:"การ์ดโปรโมจากงานแข่งอย่างเป็นทางการ หายากขึ้นเรื่อย ๆ เหมาะเก็บสะสมระยะยาว"},
+  {id:9,  cat:"box",    name:"กล่องบูสเตอร์ OP-16 (Pre-Order)", set:"24 ซอง · ภาษาญี่ปุ่น", price:3290,          stock:15, theme:"tcg-red",    code:"OP-16", hot:true, desc:"เซ็ตใหม่ล่าสุด เปิดจองรอบ 2 ซีลโรงงานจากญี่ปุ่น ของถึงไทยประมาณปลายเดือน จัดส่งตามคิวจอง"},
+  {id:10, cat:"box",    name:"กล่องบูสเตอร์ OP-15 ซีลแท้",      set:"24 ซอง · ภาษาญี่ปุ่น", price:3590,          stock:6,  theme:"tcg-purple", code:"OP-15",          desc:"กล่องซีลแท้จากญี่ปุ่น มีใบกำกับล็อตนำเข้า เหมาะทั้งเปิดเล่นและเก็บซีล"},
+  {id:11, cat:"box",    name:"กล่องบูสเตอร์ OP-09 (หายาก)",     set:"24 ซอง · ภาษาญี่ปุ่น", price:5900, old:6500, stock:2, theme:"tcg-gold",  code:"OP-09",          desc:"เซ็ตยอดนิยมที่เลิกผลิตแล้ว ราคาตลาดขยับต่อเนื่อง เหลือจำนวนจำกัด"},
+  {id:12, cat:"box",    name:"Starter Deck เริ่มเล่น",          set:"เด็คสำเร็จ 51 ใบ",     price:690,           stock:10, theme:"tcg-blue",  code:"ST",             desc:"เด็คสำเร็จพร้อมเล่น 51 ใบ + เพลย์ชีต เหมาะสุดสำหรับผู้เริ่มต้น แถมคู่มือกติกาภาษาไทย"},
+  {id:13, cat:"graded", name:"PSA 10 Secret Rare เคสใส",       set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10",  price:78384, stock:1, theme:"tcg-gold",   hot:true, desc:"เกรดสูงสุด GEM MINT 10 พร้อมเลข Cert ตรวจสอบบนเว็บ PSA ได้ทันที สำหรับนักสะสมตัวจริง"},
+  {id:14, cat:"graded", name:"PSA 9 SR Alt-Art",               set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9",   price:12500, stock:1, theme:"tcg-purple",          desc:"PSA 9 MINT สวยคุ้มราคา ลายอาร์ตพิเศษ พร้อมเคสกันรอยจากโรงงาน"},
+  {id:15, cat:"graded", name:"PSA 10 Promo งานแข่งญี่ปุ่น",     set:"Cert ตรวจสอบได้", rarity:"psa", grade:"10",  price:24900, stock:1, theme:"tcg-red",             desc:"โปรโมหายากจากงานแข่งญี่ปุ่น เกรด 10 จำนวนใบในโลกน้อยมาก"},
+  {id:16, cat:"graded", name:"BGS 9.5 Leader Parallel",        set:"Cert ตรวจสอบได้", rarity:"psa", grade:"9.5", price:18800, stock:1, theme:"tcg-gold",            desc:"BGS 9.5 GEM MINT พร้อม Subgrade ครบ เคสหนาพิเศษของ Beckett"},
 ];
 
-const rarLabel = {c:"C",uc:"UC",r:"R",sr:"SR",sec:"SEC",psa:"PSA"};
+const rarLabel = {c:"C",uc:"UC",r:"R",sr:"SR",sec:"SEC",psa:"PSA",l:"L"};
+const FREE_SHIP_AT = 1500;
 const baht = n => "฿" + n.toLocaleString("th-TH");
 
-/* ============ RENDER ============ */
-function miniCardHTML(p){
-  if(p.img){ return `<img src="${p.img}" alt="${p.name}" style="width:138px;border-radius:9px;box-shadow:0 14px 34px rgba(0,0,0,.55)">`; }
-  return `
-  <div class="mini-card ${p.theme}">
-    <div class="mini-face"><div class="frame ${p.theme}"><div class="nm">${p.set}</div></div></div>
-    <div class="foil"></div>
-  </div>`;
+/* ================= STATE ================= */
+let cart = {};            // {id: qty}
+let currentDetailId = null;
+let activeFilter = "all";
+
+/* ================= ROUTER ================= */
+function go(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const el = document.getElementById("page-"+page);
+  if(el) el.classList.add("active");
+  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on", a.dataset.nav===page));
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(page==="cart") renderCart();
+  if(page==="checkout") renderCheckoutSummary();
+  if(page==="products") renderAll();
 }
-function slabHTML(p){
-  return `
-  <div class="slab" style="transform:scale(.88)">
-    <div class="label"><span>ONE PIECE OPCG<br>${p.set}</span><span class="g10">${p.grade}</span></div>
-    <div class="inner ${p.theme}"></div>
-  </div>`;
+function goFilter(f){ activeFilter=f; go("products");
+  document.querySelectorAll("#filterBar .chip").forEach(c=>c.classList.toggle("active", c.dataset.filter===f));
+  renderAll();
 }
-function boxHTML(p){
-  return `
-  <div class="box-3d">
-    <div class="face-f ${p.theme}">
-      <span class="bx-logo">BOOSTER BOX</span>
+
+/* ================= RENDER HELPERS ================= */
+function visualHTML(p, mini=true){
+  if(p.img) return `<img src="${p.img}" alt="${p.name}" style="max-width:80%;border-radius:9px;box-shadow:0 14px 34px rgba(0,0,0,.55)">`;
+  if(p.cat==="box") return `
+    <div class="box-3d"><div class="face-f ${p.theme}">
+      <span class="bx-logo">${p.code==="ST"?"STARTER DECK":"BOOSTER BOX"}</span>
       <span class="bx-set">${p.code}</span>
-      <span class="bx-sub">24 PACKS · FACTORY SEALED</span>
-    </div>
-  </div>`;
-}
-function productHTML(p, kind){
-  const visual = kind==="box" ? boxHTML(p) : kind==="slab" ? slabHTML(p) : miniCardHTML(p);
-  const badge  = p.rarity ? `<span class="badge b-${p.rarity}">${rarLabel[p.rarity]}</span>` : "";
-  const hot    = p.hot ? `<span class="badge hot">🔥 HOT</span>` : "";
-  const old    = p.old ? `<small>${baht(p.old)}</small>` : "";
-  const stockCls = p.low ? "low" : (p.out ? "out" : "");
+      <span class="bx-sub">${p.code==="ST"?"51 CARDS · READY TO PLAY":"24 PACKS · FACTORY SEALED"}</span>
+    </div></div>`;
+  if(p.cat==="graded") return `
+    <div class="slab"><div class="label"><span>ONE PIECE OPCG<br>${p.set}</span><span class="g10">${p.grade}</span></div>
+    <div class="inner ${p.theme}"></div></div>`;
   return `
-  <article class="product" data-rarity="${p.rarity||'box'}" data-name="${(p.name+' '+p.set).toLowerCase()}">
-    <div class="thumb">${badge}${hot}${visual}</div>
+    <div class="mini-card ${p.theme}">
+      <div class="mini-face"><div class="frame ${p.theme}"><div class="nm">${p.set}</div></div></div>
+      <div class="foil"></div>
+    </div>`;
+}
+function stockText(p){
+  if(p.stock<=0) return `<span class="stock out">● สินค้าหมด</span>`;
+  if(p.stock<=3) return `<span class="stock low">● เหลือ ${p.stock} ชิ้นสุดท้าย</span>`;
+  return `<span class="stock">● มีสินค้า (${p.stock})</span>`;
+}
+function productCard(p){
+  const badge = p.rarity ? `<span class="badge b-${p.rarity}">${rarLabel[p.rarity]}</span>`
+              : p.cat==="box" ? `<span class="badge b-box">BOX</span>` : "";
+  const hot = p.hot ? `<span class="badge hot">🔥 HOT</span>` : "";
+  const old = p.old ? `<small>${baht(p.old)}</small>` : "";
+  return `
+  <article class="product" onclick="openDetail(${p.id})">
+    <div class="thumb">${badge}${hot}${visualHTML(p)}</div>
     <div class="info">
       <div class="pname">${p.name}</div>
       <div class="pmeta">${p.set}</div>
-      <span class="stock ${stockCls}">● ${p.stock}</span>
+      ${stockText(p)}
       <div class="price-row">
         <div class="price">${old}${baht(p.price)}</div>
-        <button class="add-btn" aria-label="เพิ่ม ${p.name} ลงตะกร้า" onclick="addToCart()">＋</button>
+        <button class="add-btn" aria-label="เพิ่ม ${p.name} ลงตะกร้า"
+          onclick="event.stopPropagation(); addToCart(${p.id})" ${p.stock<=0?"disabled":""}>＋</button>
       </div>
     </div>
   </article>`;
 }
 
-document.getElementById("productGrid").innerHTML = singles.map(p=>productHTML(p,"card")).join("");
-document.getElementById("boxGrid").innerHTML     = boxes.map(p=>productHTML(p,"box")).join("");
-document.getElementById("gradedGrid").innerHTML  = graded.map(p=>productHTML(p,"slab")).join("");
-
-/* ============ CART ============ */
-let cart = 0;
-const toast = document.getElementById("toast");
-let toastTimer;
-function addToCart(){
-  cart++;
-  document.getElementById("cartCount").textContent = cart;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toast.classList.remove("show"), 1800);
+/* ================= PAGE RENDERS ================= */
+function renderFeatured(){
+  document.getElementById("featuredGrid").innerHTML =
+    PRODUCTS.filter(p=>p.hot).map(productCard).join("");
+}
+function matchFilter(p){
+  switch(activeFilter){
+    case "all": return true;
+    case "single": case "box": case "graded": return p.cat===activeFilter;
+    case "sec": return p.rarity==="sec";
+    case "sr":  return p.rarity==="sr";
+    case "r":   return ["r","uc","c"].includes(p.rarity);
+    default: return true;
+  }
+}
+function renderAll(){
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  let list = PRODUCTS.filter(matchFilter)
+    .filter(p => !q || (p.name+" "+p.set+" "+(p.code||"")).toLowerCase().includes(q));
+  const sort = document.getElementById("sortSel").value;
+  if(sort==="price-asc")  list.sort((a,b)=>a.price-b.price);
+  if(sort==="price-desc") list.sort((a,b)=>b.price-a.price);
+  if(sort==="name")       list.sort((a,b)=>a.name.localeCompare(b.name,"th"));
+  if(sort==="hot")        list.sort((a,b)=>(b.hot?1:0)-(a.hot?1:0));
+  document.getElementById("resultCount").textContent = `พบสินค้า ${list.length} รายการ`;
+  document.getElementById("allGrid").innerHTML =
+    list.length ? list.map(productCard).join("")
+    : `<div class="empty-msg">ไม่พบสินค้าที่ตรงกับเงื่อนไข ลองเปลี่ยนคำค้นหรือตัวกรองดูครับ</div>`;
 }
 
-/* ============ FILTER ============ */
-const chips = document.querySelectorAll("#filterBar .chip");
-chips.forEach(chip=>{
+/* ================= DETAIL ================= */
+function openDetail(id){
+  const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+  currentDetailId = id;
+  document.getElementById("crumbName").textContent = p.name;
+  const old = p.old ? `<small>${baht(p.old)}</small>` : "";
+  const catName = {single:"การ์ดเดี่ยว", box:"กล่อง / เด็ค", graded:"การ์ดเกรด"}[p.cat];
+  document.getElementById("detailBody").innerHTML = `
+    <div class="detail-visual">${visualHTML(p)}</div>
+    <div class="detail-info">
+      <div class="pmeta">${catName} · ${p.set}</div>
+      <h2>${p.name}</h2>
+      ${p.rarity?`<span class="badge b-${p.rarity}" style="position:static;display:inline-block">${rarLabel[p.rarity]}</span>`:""}
+      ${p.hot?`<span class="badge hot" style="position:static;display:inline-block;margin-left:8px">🔥 HOT</span>`:""}
+      <div class="detail-price">${baht(p.price)}${old}</div>
+      ${stockText(p)}
+      <p class="detail-desc">${p.desc}</p>
+      <div class="spec">
+        <div><b>หมวดสินค้า</b>${catName}</div>
+        <div><b>รหัส / เซ็ต</b>${p.set}</div>
+        <div><b>สภาพ</b>${p.cat==="graded" ? "เกรดแล้ว "+p.grade : p.cat==="box" ? "ซีลโรงงาน" : "Near Mint (NM)"}</div>
+        <div><b>การแพ็ก</b>ซองแข็ง + กันกระแทก</div>
+      </div>
+      <div class="qty-row">
+        <div class="qty-ctl">
+          <button onclick="chgDetailQty(-1)" aria-label="ลดจำนวน">−</button>
+          <span id="detailQty">1</span>
+          <button onclick="chgDetailQty(1)" aria-label="เพิ่มจำนวน">＋</button>
+        </div>
+        <span style="font-size:.82rem;color:var(--dim)">สูงสุด ${p.stock} ชิ้น</span>
+      </div>
+      <div class="detail-actions">
+        <button class="btn btn-red" onclick="addToCart(${p.id}, detailQty())" ${p.stock<=0?"disabled":""}>🛒 เพิ่มลงตะกร้า</button>
+        <button class="btn btn-gold" onclick="addToCart(${p.id}, detailQty()); go('cart')" ${p.stock<=0?"disabled":""}>ซื้อเลย →</button>
+      </div>
+    </div>`;
+  document.getElementById("relatedGrid").innerHTML =
+    PRODUCTS.filter(x=>x.cat===p.cat && x.id!==p.id).slice(0,4).map(productCard).join("");
+  go("detail");
+}
+function detailQty(){ return parseInt(document.getElementById("detailQty").textContent,10)||1; }
+function chgDetailQty(d){
+  const p = PRODUCTS.find(x=>x.id===currentDetailId);
+  let q = detailQty()+d;
+  q = Math.max(1, Math.min(q, p?p.stock:99));
+  document.getElementById("detailQty").textContent = q;
+}
+
+/* ================= CART ================= */
+function cartCount(){ return Object.values(cart).reduce((a,b)=>a+b,0); }
+function cartSubtotal(){
+  return Object.entries(cart).reduce((sum,[id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id); return sum + (p?p.price*qty:0);
+  },0);
+}
+function updateCartBadge(){ document.getElementById("cartCount").textContent = cartCount(); }
+function addToCart(id, qty=1){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p || p.stock<=0) return showToast("สินค้าหมดชั่วคราว", true);
+  const cur = cart[id]||0;
+  if(cur+qty > p.stock) return showToast(`สต็อกเหลือ ${p.stock} ชิ้น`, true);
+  cart[id] = cur + qty;
+  updateCartBadge();
+  showToast(`เพิ่ม "${p.name}" ×${qty} แล้ว ✓`);
+  if(document.getElementById("page-cart").classList.contains("active")) renderCart();
+}
+function setQty(id, d){
+  const p = PRODUCTS.find(x=>x.id==id);
+  let q = (cart[id]||0)+d;
+  if(q<=0){ delete cart[id]; }
+  else if(p && q>p.stock){ showToast(`สต็อกเหลือ ${p.stock} ชิ้น`, true); return; }
+  else cart[id]=q;
+  updateCartBadge(); renderCart();
+}
+function removeItem(id){ delete cart[id]; updateCartBadge(); renderCart(); }
+
+function shipFee(sub){
+  if(sub>=FREE_SHIP_AT) return 0;
+  const sel = document.querySelector('input[name="ship"]:checked');
+  return sel ? parseInt(sel.value,10) : 50;
+}
+function renderCart(){
+  const layout = document.getElementById("cartLayout");
+  const ids = Object.keys(cart);
+  if(!ids.length){
+    layout.innerHTML = `
+      <div class="empty-msg" style="grid-column:1/-1">
+        ตะกร้ายังว่างอยู่ 🏴‍☠️ ไปล่าสมบัติกันก่อน<br><br>
+        <button class="btn btn-red" onclick="go('products')">เลือกซื้อสินค้า →</button>
+      </div>`;
+    return;
+  }
+  const items = ids.map(id=>{
+    const p = PRODUCTS.find(x=>x.id==id), qty = cart[id];
+    return `
+    <div class="cart-item">
+      <div class="ci-thumb">${visualHTML(p)}</div>
+      <div>
+        <b>${p.name}</b>
+        <span class="ci-meta">${p.set} · ${baht(p.price)}/ชิ้น</span><br>
+        <span class="ci-del" onclick="removeItem(${p.id})">✕ ลบออก</span>
+      </div>
+      <div class="ci-right">
+        <span class="ci-price">${baht(p.price*qty)}</span>
+        <div class="ci-qty">
+          <button onclick="setQty(${p.id},-1)" aria-label="ลดจำนวน">−</button><span>${qty}</span>
+          <button onclick="setQty(${p.id},1)" aria-label="เพิ่มจำนวน">＋</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+  const sub = cartSubtotal();
+  const ship = sub>=FREE_SHIP_AT ? 0 : 50;
+  layout.innerHTML = `
+    <div class="cart-list">${items}</div>
+    <div class="summary">
+      <h3>สรุปยอด</h3>
+      <div class="sum-row"><span>สินค้า ${cartCount()} ชิ้น</span><span>${baht(sub)}</span></div>
+      <div class="sum-row"><span>ค่าจัดส่ง (โดยประมาณ)</span><span>${ship===0?"ฟรี":baht(ship)}</span></div>
+      ${sub<FREE_SHIP_AT?`<div class="free-ship">ซื้อเพิ่มอีก ${baht(FREE_SHIP_AT-sub)} รับส่งฟรี!</div>`:`<div class="free-ship">✓ ได้รับสิทธิ์ส่งฟรีแล้ว</div>`}
+      <div class="sum-row total"><span>รวมทั้งหมด</span><span class="v">${baht(sub+ship)}</span></div>
+      <button class="btn btn-red btn-block" style="margin-top:16px" onclick="go('checkout')">ไปชำระเงิน →</button>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="go('products')">เลือกซื้อต่อ</button>
+    </div>`;
+}
+
+/* ================= CHECKOUT ================= */
+function renderCheckoutSummary(){
+  const sub = cartSubtotal();
+  if(sub===0){ go("cart"); return; }
+  const ship = shipFee(sub);
+  const pay = document.querySelector('input[name="pay"]:checked')?.value;
+  const codFee = pay==="cod" ? Math.round((sub+ship)*0.03) : 0;
+  const lines = Object.keys(cart).map(id=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    return `<div class="sum-row"><span>${p.name} ×${cart[id]}</span><span>${baht(p.price*cart[id])}</span></div>`;
+  }).join("");
+  document.getElementById("checkoutSummary").innerHTML = `
+    ${lines}
+    <div class="sum-row" style="margin-top:8px"><span>ค่าจัดส่ง</span><span>${ship===0?"ฟรี":baht(ship)}</span></div>
+    ${codFee?`<div class="sum-row"><span>ค่าธรรมเนียม COD 3%</span><span>${baht(codFee)}</span></div>`:""}
+    <div class="sum-row total"><span>ยอดชำระ</span><span class="v">${baht(sub+ship+codFee)}</span></div>`;
+}
+// อัปเดตสรุปเมื่อเปลี่ยนตัวเลือก + ไฮไลต์ option ที่เลือก
+document.addEventListener("change", e=>{
+  if(e.target.name==="ship" || e.target.name==="pay"){
+    e.target.closest(".opt-cards").querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));
+    e.target.closest(".opt").classList.add("sel");
+    renderCheckoutSummary();
+  }
+});
+function validate(ids){
+  let ok = true;
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    const field = el.closest(".field");
+    let valid = el.value.trim().length > 0;
+    if(id==="f-phone") valid = /^[0-9]{9,10}$/.test(el.value.replace(/[- ]/g,""));
+    field.classList.toggle("show-err", !valid);
+    if(!valid) ok = false;
+  });
+  return ok;
+}
+function placeOrder(){
+  const sub = cartSubtotal();
+  if(sub===0) return showToast("ตะกร้าว่างอยู่", true);
+  if(!validate(["f-name","f-phone","f-addr"])) return showToast("กรุณากรอกข้อมูลให้ครบ", true);
+  const pay = document.querySelector('input[name="pay"]:checked').value;
+  if(pay==="cod" && sub>5000) return showToast("COD ใช้ได้กับยอดไม่เกิน ฿5,000", true);
+  const ship = shipFee(sub);
+  const codFee = pay==="cod" ? Math.round((sub+ship)*0.03) : 0;
+  const total = sub+ship+codFee;
+  const orderNo = "GL-" + Date.now().toString().slice(-8);
+  document.getElementById("orderNo").textContent = orderNo;
+  const payName = {promptpay:"พร้อมเพย์ (รอ QR ทาง LINE)", transfer:"โอนธนาคาร (แจ้งสลิปทาง LINE)", cod:"เก็บเงินปลายทาง"}[pay];
+  document.getElementById("successDetail").innerHTML =
+    `ยอดชำระ <b style="color:var(--gold)">${baht(total)}</b> · ชำระแบบ${payName}<br>บันทึกเลขออเดอร์นี้ไว้เพื่อติดตามสถานะนะครับ`;
+  cart = {}; updateCartBadge();
+  go("success");
+}
+
+/* ================= GRADING / CONTACT FORMS ================= */
+function submitGrading(){
+  if(!validate(["g-name","g-line"])) return showToast("กรุณากรอกชื่อและช่องทางติดต่อ", true);
+  ["g-name","g-line","g-detail"].forEach(id=>document.getElementById(id).value="");
+  showToast("รับคำขอแล้ว! ทีมงานจะทัก LINE กลับครับ ✓");
+}
+function submitContact(){
+  if(!validate(["c-name","c-contact","c-msg"])) return showToast("กรุณากรอกข้อมูลให้ครบ", true);
+  ["c-name","c-contact","c-msg"].forEach(id=>document.getElementById(id).value="");
+  showToast("ส่งข้อความเรียบร้อย ✓");
+}
+
+/* ================= TOAST ================= */
+const toast = document.getElementById("toast");
+let toastTimer;
+function showToast(msg, isErr=false){
+  toast.textContent = msg;
+  toast.classList.toggle("err", isErr);
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"), 2000);
+}
+
+/* ================= SEARCH + SORT ================= */
+document.getElementById("searchInput").addEventListener("input", ()=>{
+  if(!document.getElementById("page-products").classList.contains("active")) go("products");
+  renderAll();
+});
+document.getElementById("sortSel").addEventListener("change", renderAll);
+document.querySelectorAll("#filterBar .chip").forEach(chip=>{
   chip.addEventListener("click", ()=>{
-    chips.forEach(c=>c.classList.remove("active"));
+    document.querySelectorAll("#filterBar .chip").forEach(c=>c.classList.remove("active"));
     chip.classList.add("active");
-    const f = chip.dataset.filter;
-    document.querySelectorAll("#productGrid .product").forEach(card=>{
-      const r = card.dataset.rarity;
-      const show = f==="all" || r===f || (f==="uc" && (r==="uc"||r==="c"));
-      card.style.display = show ? "" : "none";
-    });
-    // กรอง PSA → โชว์เฉพาะ section การ์ดเกรด
-    if(f==="psa"){ document.getElementById("graded").scrollIntoView({behavior:"smooth"}); }
+    activeFilter = chip.dataset.filter;
+    renderAll();
   });
 });
 
-/* ============ SEARCH ============ */
-document.getElementById("searchInput").addEventListener("input", e=>{
-  const q = e.target.value.trim().toLowerCase();
-  document.querySelectorAll(".product").forEach(card=>{
-    card.style.display = !q || card.dataset.name.includes(q) ? "" : "none";
-  });
-});
-
-/* ============ HOLO TILT (เอียงการ์ดตามเมาส์) ============ */
+/* ================= HOLO TILT ================= */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!reduceMotion){
   document.addEventListener("mousemove", e=>{
-    const card = e.target.closest(".thumb")?.querySelector(".mini-card");
+    const host = e.target.closest(".thumb, .detail-visual");
+    const card = host?.querySelector(".mini-card");
     document.querySelectorAll(".mini-card").forEach(c=>{
       if(c!==card){ c.style.transform=""; const f=c.querySelector(".foil"); if(f) f.style.backgroundPosition=""; }
     });
@@ -713,6 +973,11 @@ if(!reduceMotion){
     if(foil) foil.style.backgroundPosition = `${50+x*100}% ${50+y*100}%`;
   });
 }
+
+/* ================= INIT ================= */
+renderFeatured();
+renderAll();
+go("home");
 </script>
 </body>
 </html>
